@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where npx *)",
+      "Bash(npx --version)",
+      "Bash(where node *)",
+      "Bash(where python *)",
+      "Bash(where python3 *)",
+      "Bash(where python.exe)",
+      "Bash(where py.exe)",
+      "Bash(where http-server.cmd)",
+      "Bash(mkdir \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Portfolio\\\\v6\\\\.claude\")",
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(cd \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Portfolio\\\\v6\"; powershell -ExecutionPolicy Bypass -File \"build-export.ps1\")"
+    ]
+  }
+}

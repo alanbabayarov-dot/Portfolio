@@ -1,0 +1,9 @@
+# Binary tools
+cloudflared.exe
+
+# Generated exports (large, rebuild with build-export.ps1)
+export/
+
+# OS
+.DS_Store
+Thumbs.db
