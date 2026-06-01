@@ -607,13 +607,28 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 .c03 .lead-overlay p{font-size:14px;color:var(--bone);margin:0;line-height:1.5;font-family:var(--type)}
 .c03 .row{display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:center}
 
-/* Case 04 — AI ATELIER */
-.c04{display:grid;grid-template-columns:7fr 5fr;gap:40px;position:relative}
+/* Case 04 — TOOLOR × WNG 2026 */
+.c04{display:grid;grid-template-columns:1fr;gap:30px;position:relative}
 .c04 .case-num{right:0;top:-44px}
-.c04 .head{grid-column:1/2;display:flex;flex-direction:column;gap:16px;padding-top:30px}
-.c04 .body{grid-column:1/2;align-self:end;padding-bottom:8px}
-.c04 .lead{grid-column:2/3;grid-row:1/3;height:72vh;max-height:680px}
-.c04 .lead .slot{height:100%}
+.c04 .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.c04 .head h3{max-width:22ch}
+.c04 .triptych{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.c04 .triptych::-webkit-scrollbar{display:none}
+.c04 .triptych .slot{flex:0 0 340px;aspect-ratio:2/3;scroll-snap-align:start}
+/* Case 05 — TOOLOR brand */
+.c05{display:grid;grid-template-columns:1fr;gap:30px;position:relative}
+.c05 .case-num{left:0;top:-40px}
+.c05 .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.c05 .head h3{max-width:20ch}
+.toolor-full .slot{aspect-ratio:21/9;background:#f2f0ed}
+.toolor-full .slot img{object-fit:contain;padding:32px}
+/* Case 06 — AI Systems */
+.c06{display:grid;grid-template-columns:5fr 7fr;gap:40px;position:relative}
+.c06 .case-num{right:0;top:-44px}
+.c06 .head{display:flex;flex-direction:column;gap:16px;padding-top:30px}
+.c06 .body{align-self:end;padding-bottom:8px}
+.c06 .lead{grid-column:2/3;grid-row:1/3;height:72vh;max-height:680px}
+.c06 .lead .slot{height:100%}
 
 /* ═══════════════════════════════════════════════════════════════════
    03 — STUDIO  (about + how I work, distilled)
@@ -822,7 +837,7 @@ footer{
 
   /* c01 — KAN */
   .c01{grid-template-columns:1fr;gap:20px}
-  .c01 .head,.c02 .head,.c04 .head{padding-top:0}
+  .c01 .head,.c02 .head,.c06 .head{padding-top:0}
   /* horizontal scroll carousel */
   .c01 .triptych{
     grid-column:1;
@@ -857,13 +872,17 @@ footer{
   .c03 .row{grid-template-columns:1fr;gap:14px}
   .c03 .lead-overlay{left:12px;right:12px;bottom:12px;max-width:none}
 
-  /* c04 — AI ATELIER */
-  .c04{grid-template-columns:1fr;gap:20px}
-  .c04 .head{grid-column:1}
-  .c04 .body{grid-column:1}
-  /* editorial-02.jpg is 1121×700 (1.6:1) — landscape, not portrait */
-  .c04 .lead{grid-column:1;grid-row:auto;aspect-ratio:3/2;height:auto;max-height:none}
-  .c04 .lead .slot{height:100%}
+  /* c04 — WNG 2026 */
+  .c04 .triptych .slot{flex:0 0 73vw;aspect-ratio:3/4}
+  /* c05 — TOOLOR */
+  .toolor-full .slot{aspect-ratio:16/9}
+  .toolor-full .slot img{padding:16px}
+  /* c06 — AI Systems */
+  .c06{grid-template-columns:1fr;gap:20px}
+  .c06 .head{grid-column:1;padding-top:0}
+  .c06 .body{grid-column:1}
+  .c06 .lead{grid-column:1;grid-row:auto;aspect-ratio:3/2;height:auto;max-height:none}
+  .c06 .lead .slot{height:100%}
 
   /* ── STUDIO ────────────────────────────────────────────────── */
   #studio{grid-template-columns:1fr;gap:24px;padding-top:56px;padding-bottom:56px}
@@ -1034,9 +1053,9 @@ footer{
     <div class="work-head" data-reveal>
       <div>
         <span class="eyebrow">002 — Selected work · 2023–2026</span>
-        <h2>Five <em>files</em>.<br>One bloodline.</h2>
+        <h2>Six <em>files</em>.<br>One bloodline.</h2>
       </div>
-      <div class="note">— Five files. Three disciplines. One bloodline: fashion, brand, and AI systems built from nomadic memory and sacred geometry.</div>
+      <div class="note">— Six files. Three disciplines. One bloodline: fashion, brand, and AI systems built from nomadic memory and sacred geometry.</div>
     </div>
 
     <!-- 01 — KAN / VISUAL CODEX -->
@@ -1155,10 +1174,80 @@ footer{
       </div>
     </article>
 
-    <!-- 04 — AI FASHION & CREATIVE SYSTEMS -->
-    <article id="c04" class="case c04" data-case data-screen-label="C04 AI Systems">
-      <span class="mark">FILE 04 — <b>AI CREATIVE SYSTEMS</b></span>
+    <!-- 04 — TOOLOR × WORLD NOMAD GAMES 2026 -->
+    <article id="c04" class="case c04" data-case data-screen-label="C04 WNG 2026">
+      <span class="mark">FILE 04 — <b>TOOLOR × WNG 2026</b></span>
       <div class="case-num">04</div>
+
+      <div class="head" data-reveal>
+        <h3>TOOLOR <em>× World Nomad Games</em></h3>
+        <div class="meta">fashion designer · 2025–2026 · official national team collection · Kyrgyzstan</div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>Official apparel for the VI World Nomad Games 2026 — Kyrgyzstan's national team collection. The brief: carry 3,000 years of nomadic visual culture into athletic function without sentimentality. <em>Petroglyphs as side panels. Topographic contour lines as ornament. The ibex as emblem.</em> Shot on-location against the Cholpon-Ata rock carvings — the same stones that sourced the graphic language of the collection.</p>
+        <dl>
+          <dt>role</dt><dd>fashion designer · creative director</dd>
+          <dt>scope</dt><dd>match jersey · polo · bomber · structured cap</dd>
+          <dt>client</dt><dd>VI World Nomad Games Organising Committee · TOOLOR</dd>
+        </dl>
+      </div>
+
+      <div class="triptych" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="WNG 2026 — Kyrgyzstan match jersey back, KYRGYZSTAN 7, petroglyphs" src="assets/wng-jersey-back.png">
+          <span class="slot-label">01 · MATCH JERSEY · BACK · KYRGYZSTAN 7</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="WNG 2026 — bomber jacket, navy, mustard lining, back circle motif" src="assets/wng-bomber.jpg">
+          <span class="slot-label">02 · BOMBER · MUSTARD LINING · CIRCLE MOTIF</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="WNG 2026 — polo shirt, navy, golden topographic ornament" src="assets/wng-polo.jpg">
+          <span class="slot-label">03 · POLO · TOPOGRAPHIC ORNAMENT · NAVY</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05 — TOOLOR -->
+    <article id="c05" class="case c05" data-case data-screen-label="C05 TOOLOR">
+      <span class="mark">FILE 05 — <b>TOOLOR</b></span>
+      <div class="case-num">05</div>
+
+      <div class="head" data-reveal>
+        <h3>TOOLOR <em>— fashion system</em></h3>
+        <div class="meta">founder · fashion designer · 2024 → ongoing · outerwear / brand identity</div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>TOOLOR is built on the premise that Central Asian design heritage is not decorative — it is <em>structural</em>. The brand's signature outerwear piece: a stand-collar overcoat in technical shell. Minimal exterior — one badge, one silk label, a line of runic inscription at the back yoke. Interior lined entirely in a field of ancient Orkhon script. What you see from the street is restraint. What you see from the inside is the archive. <em>The garment as private statement.</em></p>
+        <dl>
+          <dt>role</dt><dd>founder · fashion designer</dd>
+          <dt>piece</dt><dd>stand-collar overcoat · technical shell · runic lining</dd>
+          <dt>language</dt><dd>Orkhon script · Central Asian archive · minimal exterior</dd>
+        </dl>
+      </div>
+
+      <div class="toolor-full" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="TOOLOR trench coat — front, side, back, open interior with runic lining" src="assets/toolor-trench.jpg">
+          <span class="slot-label">TOOLOR — STAND-COLLAR OVERCOAT · FOUR VIEWS · SS26</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 06 — AI FASHION & CREATIVE SYSTEMS -->
+    <article id="c06" class="case c06" data-case data-screen-label="C06 AI Systems">
+      <span class="mark">FILE 06 — <b>AI CREATIVE SYSTEMS</b></span>
+      <div class="case-num">06</div>
 
       <div class="head" data-reveal>
         <h3>AI Fashion <em>— creative systems</em></h3>
@@ -1166,7 +1255,7 @@ footer{
       </div>
 
       <div class="body" data-reveal data-delay="1">
-        <p>AI-powered workflows built from the inside — a practitioner's toolkit for fashion design, brand development, content creation and visual storytelling. Not automation. <em>Architecture.</em> The kind that accelerates intuition instead of replacing it. Each system is designed around a specific creative problem: garment generation, identity iteration, campaign production at speed.</p>
+        <p>AI-powered workflows built from the inside — a practitioner's toolkit for fashion design, brand development, content creation and visual storytelling. Not automation. <em>Architecture.</em> The kind that accelerates intuition instead of replacing it. Each pipeline is designed around a specific creative problem: garment generation, identity iteration, campaign production at speed without losing the hand of the maker.</p>
         <dl>
           <dt>role</dt><dd>AI creative lead</dd>
           <dt>stack</dt><dd>SD · ComfyUI · After Effects · custom pipelines</dd>
@@ -1178,37 +1267,8 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="AI Atelier frame" src="assets/editorial-02.jpg">
-          <span class="slot-label">FRAME 014 · 90s FILM</span>
-        </div>
-      </div>
-    </article>
-
-    <!-- 05 — BRAND & VISUAL IDENTITY -->
-    <article id="c05" class="case c05" data-case data-screen-label="C05 Brand Identity">
-      <span class="mark">FILE 05 — <b>BRAND IDENTITY</b></span>
-      <div class="case-num">05</div>
-
-      <div class="head" data-reveal>
-        <h3>Brand <em>— visual identity</em></h3>
-        <div class="meta">creative director · 2022 → ongoing · identity / strategy / systems</div>
-      </div>
-
-      <div class="body" data-reveal data-delay="1">
-        <p>Creative direction and brand strategy for emerging fashion brands and cultural initiatives across Central Asia and beyond. Visual systems built to hold — identity, language and image locked to a single character. The work starts with a question about what a brand <em>refuses to be</em>, then works backward from there.</p>
-        <dl>
-          <dt>role</dt><dd>creative director · brand strategist</dd>
-          <dt>scope</dt><dd>identity · strategy · visual systems · art direction</dd>
-          <dt>clients</dt><dd>fashion brands · cultural initiatives · emerging studios</dd>
-        </dl>
-      </div>
-
-      <div class="lead" data-reveal data-delay="2">
-        <div class="slot">
-          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
-          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Brand identity work — visual system" src="assets/editorial-01.jpg">
-          <span class="slot-label">VISUAL SYSTEM · BRAND DIRECTION</span>
+          <img alt="AI creative systems — generative fashion pipeline" src="assets/editorial-02.jpg">
+          <span class="slot-label">GENERATIVE · PIPELINE · 2026</span>
         </div>
       </div>
     </article>
@@ -1217,13 +1277,13 @@ footer{
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Atelier N°<i>06</i></span>
-      <span>Studio open · <i>autumn 2026</i></span>
-      <span>AI · <i>couture</i> · direction</span>
+      <span>TOOLOR · <i>SS26</i></span>
+      <span>World Nomad Games · <i>2026</i></span>
+      <span>EULER · <i>brand DNA</i></span>
       <span><i>Bishkek</i> → worldwide</span>
-      <span>Atelier N°<i>06</i></span>
-      <span>Studio open · <i>autumn 2026</i></span>
-      <span>AI · <i>couture</i> · direction</span>
+      <span>TOOLOR · <i>SS26</i></span>
+      <span>World Nomad Games · <i>2026</i></span>
+      <span>EULER · <i>brand DNA</i></span>
       <span><i>Bishkek</i> → worldwide</span>
     </div>
   </div>
