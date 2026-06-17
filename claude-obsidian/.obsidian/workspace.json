@@ -11,10 +11,14 @@
             "id": "left",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "Граф"
+              "type": "markdown",
+              "state": {
+                "file": "SKILLS/SKILLS.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SKILLS"
             }
           }
         ]
@@ -198,6 +202,8 @@
   },
   "active": "left",
   "lastOpenFiles": [
+    "HOME.md",
+    "SKILLS/SKILLS.md",
     "SKILLS/Tools/Tools.md",
     "SKILLS/References/References.md",
     "SKILLS/Progress Journal/Design Journal.md",
@@ -211,7 +217,6 @@
     "SKILLS/Vector C — Digital Fashion/Vector C — Digital Fashion.md",
     "SKILLS/Vector B — Silhouette/Vector B — Silhouette.md",
     "SKILLS/Vector A — Art Direction/Vector A — Art Direction.md",
-    "SKILLS/SKILLS.md",
     "SKILLS/Tools",
     "SKILLS/Progress Journal",
     "SKILLS/References",
@@ -226,7 +231,6 @@
     "Templates/AI-Промпт.md",
     "Templates/Новый клиент.md",
     "Templates/Новая коллекция.md",
-    "HOME.md",
     "ЗАДАЧИ.md",
     "Artefact/Клиенты.md",
     "Toolor/Toolor.md"
