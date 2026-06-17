@@ -9,6 +9,23 @@ cssclasses: [home]
 
 ---
 
+## 🧠 SKILLS — CD SYSTEM
+
+> [[SKILLS/SKILLS|VisualKan Creative Director OS]] — 6 векторов · 3 месяца · 88 часов
+
+| | | |
+|---|---|---|
+| 🎬 | [[SKILLS/Vector A — Art Direction/Vector A — Art Direction\|Art Direction]] | Месяц 1 |
+| ✏️ | [[SKILLS/Vector B — Silhouette/Vector B — Silhouette\|Silhouette]] | Месяц 1–2 |
+| 🌐 | [[SKILLS/Vector C — Digital Fashion/Vector C — Digital Fashion\|Digital Fashion]] | Месяц 2 |
+| ⚡ | [[SKILLS/Vector D — AI Pipeline/Vector D — AI Pipeline\|AI Pipeline]] | Ongoing |
+| 👁️ | [[SKILLS/Vector E — Leadership/Vector E — Leadership\|Leadership]] | Ongoing |
+| 📖 | [[SKILLS/Vector F — Brand Platform/Vector F — Brand Platform\|Brand Platform]] | Месяц 3 |
+
+📓 [[SKILLS/Progress Journal/Design Journal|Design Journal]] · 📅 [[SKILLS/Training Plan/Month 1/Month 1|Месяц 1]] · [[SKILLS/Training Plan/Month 2/Month 2|Месяц 2]] · [[SKILLS/Training Plan/Month 3/Month 3|Месяц 3]]
+
+---
+
 ## ПРОЕКТЫ
 
 | | Проект | |
