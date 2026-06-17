@@ -1,0 +1,193 @@
+{
+  "settings": {
+    "emojiStyle": "native",
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "iconColor": null,
+    "recentlyUsedIcons": [],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": true,
+    "iconInTitleEnabled": true,
+    "iconInFrontmatterEnabled": false,
+    "iconInMenuEnabled": true,
+    "iconInLinksEnabled": false,
+    "clickable": false,
+    "iconIdentifier": ":",
+    "turnIcons": false
+  },
+  "EULER": {
+    "iconName": "🜂",
+    "iconColor": "#C9A84C"
+  },
+  "EULER/Brand Bible": {
+    "iconName": "📜",
+    "iconColor": "#C9A84C"
+  },
+  "EULER/Коллекции": {
+    "iconName": "👗",
+    "iconColor": "#C9A84C"
+  },
+  "EULER/Производство": {
+    "iconName": "⚙️",
+    "iconColor": "#888888"
+  },
+  "EULER/Референсы": {
+    "iconName": "🔍",
+    "iconColor": "#888888"
+  },
+  "Toolor": {
+    "iconName": "◈",
+    "iconColor": "#5B8AF5"
+  },
+  "Toolor/Концепты": {
+    "iconName": "💡",
+    "iconColor": "#5B8AF5"
+  },
+  "Toolor/Задачи": {
+    "iconName": "✅",
+    "iconColor": "#5B8AF5"
+  },
+  "Toolor/Референсы": {
+    "iconName": "🔍",
+    "iconColor": "#888888"
+  },
+  "Artefact": {
+    "iconName": "∴",
+    "iconColor": "#E8D5B0"
+  },
+  "Artefact/Проекты": {
+    "iconName": "📁",
+    "iconColor": "#E8D5B0"
+  },
+  "Artefact/Клиенты": {
+    "iconName": "🤝",
+    "iconColor": "#E8D5B0"
+  },
+  "Artefact/Референсы": {
+    "iconName": "🔍",
+    "iconColor": "#888888"
+  },
+  "Commerce": {
+    "iconName": "⬡",
+    "iconColor": "#4CAF50"
+  },
+  "Commerce/Wildberries": {
+    "iconName": "🛍️",
+    "iconColor": "#9C27B0"
+  },
+  "Commerce/Техпакеты": {
+    "iconName": "📐",
+    "iconColor": "#4CAF50"
+  },
+  "Commerce/Поставщики": {
+    "iconName": "🏭",
+    "iconColor": "#888888"
+  },
+  "Личное": {
+    "iconName": "🌙",
+    "iconColor": "#7B68EE"
+  },
+  "Личное/Финансы": {
+    "iconName": "💰",
+    "iconColor": "#FFD700"
+  },
+  "Личное/Крипта": {
+    "iconName": "◎",
+    "iconColor": "#F7931A"
+  },
+  "Личное/Цели": {
+    "iconName": "✦",
+    "iconColor": "#FFD700"
+  },
+  "Личное/Идеи": {
+    "iconName": "◇",
+    "iconColor": "#7B68EE"
+  },
+  "AI-Промпты": {
+    "iconName": "✴",
+    "iconColor": "#00BCD4"
+  },
+  "AI-Промпты/Nano-Banana": {
+    "iconName": "🍌",
+    "iconColor": "#FFD700"
+  },
+  "AI-Промпты/Flux": {
+    "iconName": "⚡",
+    "iconColor": "#FF6B35"
+  },
+  "AI-Промпты/Kling": {
+    "iconName": "🎬",
+    "iconColor": "#E91E63"
+  },
+  "AI-Промпты/3D": {
+    "iconName": "🧊",
+    "iconColor": "#00BCD4"
+  },
+  "SKILLS": {
+    "iconName": "🧠",
+    "iconColor": "#FF6B35"
+  },
+  "SKILLS/Vector A — Art Direction": {
+    "iconName": "🎬",
+    "iconColor": "#FF6B35"
+  },
+  "SKILLS/Vector B — Silhouette": {
+    "iconName": "✏️",
+    "iconColor": "#FF6B35"
+  },
+  "SKILLS/Vector C — Digital Fashion": {
+    "iconName": "🌐",
+    "iconColor": "#00BCD4"
+  },
+  "SKILLS/Vector D — AI Pipeline": {
+    "iconName": "⚡",
+    "iconColor": "#FFD700"
+  },
+  "SKILLS/Vector E — Leadership": {
+    "iconName": "👁️",
+    "iconColor": "#FF6B35"
+  },
+  "SKILLS/Vector F — Brand Platform": {
+    "iconName": "📖",
+    "iconColor": "#C9A84C"
+  },
+  "SKILLS/Training Plan": {
+    "iconName": "📅",
+    "iconColor": "#4CAF50"
+  },
+  "SKILLS/Training Plan/Month 1": {
+    "iconName": "1️⃣",
+    "iconColor": "#4CAF50"
+  },
+  "SKILLS/Training Plan/Month 2": {
+    "iconName": "2️⃣",
+    "iconColor": "#FF9800"
+  },
+  "SKILLS/Training Plan/Month 3": {
+    "iconName": "3️⃣",
+    "iconColor": "#E91E63"
+  },
+  "SKILLS/Progress Journal": {
+    "iconName": "📓",
+    "iconColor": "#7B68EE"
+  },
+  "SKILLS/References": {
+    "iconName": "📚",
+    "iconColor": "#888888"
+  },
+  "SKILLS/Tools": {
+    "iconName": "🛠️",
+    "iconColor": "#888888"
+  },
+  "Templates": {
+    "iconName": "📄",
+    "iconColor": "#888888"
+  }
+}
