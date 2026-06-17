@@ -1,0 +1,12 @@
+{
+  "enabled_templates_hotkeys": [],
+  "trigger_on_file_creation": true,
+  "auto_jump_to_cursor": true,
+  "enable_keybindings": true,
+  "templates_pairs": [],
+  "templates_folder": "Templates",
+  "syntax_highlighting": true,
+  "syntax_highlighting_mobile": false,
+  "enabled_templates_hotkeys_mobile": [],
+  "auto_jump_to_cursor_mobile": true
+}

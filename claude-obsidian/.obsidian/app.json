@@ -1,0 +1,20 @@
+{
+  "defaultViewMode": "preview",
+  "foldIndent": true,
+  "showLineNumber": false,
+  "spellcheck": false,
+  "tabSize": 2,
+  "useTab": false,
+  "vimMode": false,
+  "newFileLocation": "current",
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false,
+  "alwaysUpdateLinks": true,
+  "showUnsupportedFiles": false,
+  "pdfExportSettings": {
+    "pageSize": "A4",
+    "landscape": false,
+    "margin": "0",
+    "downscaleEmbeddedImages": true
+  }
+}
