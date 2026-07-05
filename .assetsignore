@@ -1,0 +1,15 @@
+# Never serve these over the web — personal vault and tooling
+claude-obsidian
+.claude
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+CLAUDE.md
+README.md
+build-export.ps1
+dev-share.ps1
+open-firewall.bat
+cloudflared.exe
+export
+Portfolio v6.html

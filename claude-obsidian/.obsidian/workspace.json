@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SKILLS/SKILLS.md",
+                "file": "EULER/EULER.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SKILLS"
+              "title": "EULER"
             }
           }
         ]
@@ -204,6 +204,7 @@
   "lastOpenFiles": [
     "HOME.md",
     "SKILLS/SKILLS.md",
+    "SKILLS/Vector B — Silhouette/Vector B — Silhouette.md",
     "SKILLS/Tools/Tools.md",
     "SKILLS/References/References.md",
     "SKILLS/Progress Journal/Design Journal.md",
@@ -215,7 +216,6 @@
     "SKILLS/Vector E — Leadership/Vector E — Leadership.md",
     "SKILLS/Vector D — AI Pipeline/Vector D — AI Pipeline.md",
     "SKILLS/Vector C — Digital Fashion/Vector C — Digital Fashion.md",
-    "SKILLS/Vector B — Silhouette/Vector B — Silhouette.md",
     "SKILLS/Vector A — Art Direction/Vector A — Art Direction.md",
     "SKILLS/Tools",
     "SKILLS/Progress Journal",

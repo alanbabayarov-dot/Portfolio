@@ -12,7 +12,10 @@
       "Bash(mkdir \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Portfolio\\\\v6\\\\.claude\")",
       "mcp__Claude_Preview__preview_start",
       "PowerShell(cd \"C:\\\\Users\\\\Admin\\\\Desktop\\\\Portfolio\\\\v6\"; powershell -ExecutionPolicy Bypass -File \"build-export.ps1\")",
-      "WebSearch"
+      "WebSearch",
+      "PowerShell(ffmpeg -version 2>$null)",
+      "PowerShell(magick -version 2>$null)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Admin\\\\Desktop\\\\newport\\\\NewDigitalAtelier\" -Recurse -File | ForEach-Object { \"{0}  \\({1:N0} KB\\)\" -f $_.Name, \\($_.Length/1KB\\) }; \"---\"; Get-ChildItem \"C:\\\\Users\\\\Admin\\\\Desktop\\\\newport\\\\hockey national team IIHF\" -Recurse -File | ForEach-Object { \"{0}  \\({1:N0} KB\\)\" -f $_.Name, \\($_.Length/1KB\\) })"
     ]
   }
 }

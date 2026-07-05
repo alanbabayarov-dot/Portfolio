@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ALAN BABAYAROV — DIGITAL COUTURE · AI ART DIRECTION</title>
+<title>ALAN BABAYAROV — FASHION DESIGNER · DIGITAL COUTURE 3D/UE5 × AI</title>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Conceptual digital fashion designer & AI art director. Bishkek, worldwide.">
+<meta name="description" content="Fashion designer & digital fashion designer — 3D, UE5 and AI. Olympic and World Nomad Games kits, Jetlag productions, AI-directed digital collections. Bishkek, worldwide.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -397,7 +397,7 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 }
 .hero-portrait .slot{height:100%}
 .hero-portrait .slot img{
-  object-position:55% 28%;
+  object-position:58% 40%;
   filter:contrast(1.08) saturate(.78) brightness(.88);
 }
 .hero-portrait::after{
@@ -528,6 +528,31 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
   display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:flex-end;
   margin-bottom:60px;
 }
+.filter{display:flex;flex-wrap:wrap;gap:10px;margin:-30px 0 54px}
+.filter button{
+  font-family:var(--type);font-size:11px;letter-spacing:.14em;
+  color:var(--bone);background:transparent;
+  border:1px solid var(--bordeaux);padding:9px 16px;cursor:pointer;
+  transition:border-color .3s,color .3s,background .3s,box-shadow .3s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.filter button svg{width:13px;height:13px;flex:none;opacity:.8}
+.filter button.on svg{opacity:1;filter:drop-shadow(0 0 4px var(--neon))}
+.filter button:hover{border-color:var(--red);color:#fff}
+.filter button.on{
+  border-color:var(--neon);color:#fff;
+  background:rgba(var(--red-rgb),.18);
+  box-shadow:0 0 14px rgba(var(--neon-rgb),.25);
+}
+.case.filtered{display:none}
+.lang{cursor:pointer;-webkit-user-select:none;user-select:none}
+.lang b{color:var(--neon)}
+.case dl dd a{
+  color:var(--bone);text-decoration:none;
+  border-bottom:1px solid var(--red);
+  transition:color .3s,border-color .3s;
+}
+.case dl dd a:hover{color:#fff;border-color:var(--neon)}
 .work-head h2{
   font-family:var(--serif);font-weight:500;font-style:italic;
   font-size:clamp(46px,7vw,96px);line-height:.95;margin:0;letter-spacing:-.02em;color:var(--bone);
@@ -583,6 +608,7 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 .c01 .triptych .slot{aspect-ratio:3/4}
 .c01 .triptych .slot:nth-child(2){aspect-ratio:4/3;align-self:center;transform:translateY(-12%)}
 .c01 .triptych .slot:nth-child(3){aspect-ratio:2/3;align-self:end;transform:translateY(8%)}
+.c01 .wide-duo,.c01 .wide-solo{grid-column:1/3;margin-top:6px}
 
 /* Case 02 — EULER */
 .c02{display:grid;grid-template-columns:5fr 7fr;gap:40px;position:relative}
@@ -598,6 +624,7 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 .c03 .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
 .c03 .head h3{max-width:18ch}
 .c03 .lead{aspect-ratio:21/9;max-height:640px;position:relative}
+.c03 .lead.sixteen{aspect-ratio:16/9;max-height:700px}
 .c03 .lead .slot{height:100%}
 .c03 .lead-overlay{
   position:absolute;left:24px;bottom:24px;z-index:6;
@@ -724,6 +751,106 @@ footer{
   color:var(--bone);opacity:.55;
 }
 
+/* ─── Discipline chips (AI / 3D / craft markers) ─────────────── */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--hair);color:var(--bone);opacity:.85;
+}
+.chip.ai{
+  border-color:var(--hair-red);color:var(--neon);opacity:1;
+  text-shadow:0 0 10px rgba(var(--neon-rgb),.45);
+  box-shadow:0 0 12px rgba(var(--neon-rgb),.12);
+}
+
+/* ─── Video slots ────────────────────────────────────────────── */
+.slot video{
+  display:block;width:100%;height:100%;object-fit:cover;
+  filter:contrast(1.05) saturate(.85) brightness(.9);
+  transition:filter .5s ease;background:#000;
+}
+.slot.playing video{filter:none;object-fit:contain}
+.slot.playing::before,.slot.playing::after{opacity:0}
+.slot-label{transition:opacity .4s ease}
+.slot.playing .slot-label{opacity:0}
+.vbtn{
+  position:absolute;inset:0;z-index:6;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  cursor:pointer;background:rgba(7,3,6,.22);color:var(--neon);
+  transition:opacity .45s ease, visibility 0s .45s;
+  -webkit-tap-highlight-color:transparent;
+}
+.slot.playing .vbtn{opacity:0;visibility:hidden;pointer-events:none}
+.vbtn .ring{
+  width:74px;height:74px;border-radius:50%;border:1px solid var(--neon);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 24px rgba(var(--neon-rgb),.45),0 0 60px rgba(var(--red-rgb),.25) inset;
+  animation:vpulse 2.6s ease-in-out infinite;
+}
+.vbtn .ring svg{margin-left:4px}
+@keyframes vpulse{50%{transform:scale(1.07);box-shadow:0 0 40px rgba(var(--neon-rgb),.65),0 0 80px rgba(var(--red-rgb),.3) inset}}
+.vbtn .cap{
+  font-family:var(--type);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--bone);background:rgba(7,3,6,.6);padding:4px 10px;
+}
+.vbtn .cap b{color:var(--neon);font-weight:400}
+
+/* ─── Generic image strips ───────────────────────────────────── */
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.strip .slot{aspect-ratio:3/4}
+.strip.landscape .slot{aspect-ratio:4/3}
+.wide-duo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.wide-duo .slot{aspect-ratio:16/9}
+.wide-duo.tall .slot{aspect-ratio:3/2}
+.wide-duo.wide .slot{aspect-ratio:9/4}
+.wide-solo .slot{aspect-ratio:auto}
+.wide-solo .slot img{height:auto}
+.strip.flat .slot{aspect-ratio:16/9}
+.strip.four{grid-template-columns:repeat(4,1fr)}
+.strip.accent{grid-template-columns:2fr 1fr 1fr;align-items:start}
+.wide-solo.half{max-width:640px}
+/* feature duo — wide render left, tall accent loop right, bottoms aligned */
+.duo-feature{display:grid;grid-template-columns:2fr 1fr;gap:14px}
+.duo-feature .slot:first-child img{position:absolute;inset:0;width:100%;height:100%}
+.duo-feature .slot.tall{aspect-ratio:3/4}
+/* stacked lead — poster on top, second frame fills the column */
+.c04 .lead.stack{display:flex;flex-direction:column;gap:14px;height:auto;max-height:none}
+.c04 .lead.stack .slot{height:auto}
+.c04 .lead.stack .slot:first-child{aspect-ratio:4/5}
+.c04 .lead.stack .slot:last-child{aspect-ratio:16/9;flex:1;min-height:180px}
+/* full-width film row inside a case grid (Toolor · RUH) */
+.film-wide{grid-column:1/3;margin-top:14px;aspect-ratio:21/9;max-height:640px;position:relative}
+.film-wide .slot{height:100%}
+.film-wide .lead-overlay{
+  position:absolute;left:24px;bottom:24px;z-index:6;
+  background:rgba(7,3,6,.78);border-left:2px solid var(--neon);
+  padding:14px 18px;max-width:44ch;
+}
+.film-wide .lead-overlay p{font-size:14px;color:var(--bone);margin:0;line-height:1.5;font-family:var(--type)}
+/* capsule poster row — tall poster left, two reel strips right */
+.poster-row{grid-column:1/3;margin-top:14px;display:grid;grid-template-columns:1fr 2fr;gap:14px}
+.poster-row .tallposter{aspect-ratio:10/13}
+.poster-row .rcol{display:grid;grid-template-rows:1fr 1fr;gap:14px}
+.poster-row .rcol .slot{height:100%}
+.mini-slot{margin-top:22px;max-width:440px;aspect-ratio:16/9}
+
+/* strips inside case grids span full width */
+.c02 .strip,.c02 .wide-solo,.c02 .wide-duo,.c02 .duo-feature{grid-column:1/3;margin-top:12px}
+.c03 .strip{margin-top:0}
+.c04 .strip,.c04 .wide-duo,.c04 .wide-solo{grid-column:1/3}
+.c04 .wide-duo,.c04 .wide-solo{margin-top:14px}
+
+/* square video lead (digital atelier) */
+.lead.sq{height:auto;max-height:none}
+.lead.sq .slot{aspect-ratio:1/1;height:auto}
+
+/* Case 06 — EULER / creative direction */
+.c06{display:grid;grid-template-columns:5fr 7fr;gap:50px 40px;position:relative}
+.c06 .case-num{right:0;top:-40px;text-align:right;width:50%;position:absolute}
+.c06 .head{display:flex;flex-direction:column;gap:16px;padding-top:30px}
+.c06 .body{align-self:end;padding-bottom:8px}
+.c06 .strip,.c06 .wide-solo,.c06 .wide-duo{grid-column:1/3}
+
 /* ═══════════════════════════════════════════════════════════════════
    MOBILE ≤ 880px — native, deliberate, cinematic
    ═══════════════════════════════════════════════════════════════════ */
@@ -772,7 +899,7 @@ footer{
     margin:0;border:0;z-index:1;
   }
   .hero-portrait .slot{height:100%;border:none;border-radius:0}
-  .hero-portrait .slot img{object-position:55% 16%}
+  .hero-portrait .slot img{object-position:58% 32%}
   /* readability gradient */
   .hero-portrait::before{
     content:'';position:absolute;inset:0;z-index:4;pointer-events:none;
@@ -822,6 +949,7 @@ footer{
 
   /* c01 — KAN */
   .c01{grid-template-columns:1fr;gap:20px}
+  .c01 .wide-duo,.c01 .wide-solo{grid-column:1}
   .c01 .head,.c02 .head,.c04 .head{padding-top:0}
   /* horizontal scroll carousel */
   .c01 .triptych{
@@ -857,13 +985,58 @@ footer{
   .c03 .row{grid-template-columns:1fr;gap:14px}
   .c03 .lead-overlay{left:12px;right:12px;bottom:12px;max-width:none}
 
-  /* c04 — AI ATELIER */
+  /* c04 — TOTEMISM (vertical mood film) */
   .c04{grid-template-columns:1fr;gap:20px}
   .c04 .head{grid-column:1}
   .c04 .body{grid-column:1}
-  /* editorial-02.jpg is 1121×700 (1.6:1) — landscape, not portrait */
-  .c04 .lead{grid-column:1;grid-row:auto;aspect-ratio:3/2;height:auto;max-height:none}
+  .c04 .lead{grid-column:1;grid-row:auto;aspect-ratio:4/5;height:auto;max-height:76svh}
   .c04 .lead .slot{height:100%}
+  .c04 .lead.stack{aspect-ratio:auto;max-height:none}
+  .c04 .lead.stack .slot{height:auto}
+  .c04 .lead.stack .slot:first-child{aspect-ratio:4/5}
+  .c04 .lead.stack .slot:last-child{aspect-ratio:16/9;min-height:0}
+  .duo-feature{grid-template-columns:1fr;gap:12px}
+  .duo-feature .slot:first-child{height:auto;aspect-ratio:10/7}
+  .duo-feature .slot.tall{aspect-ratio:3/4}
+
+  /* strips → swipe carousels */
+  .strip,.strip.landscape{
+    display:flex;flex-direction:row;
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    gap:12px;
+    margin:0 calc(var(--pad) * -1);
+    padding:0 var(--pad) 8px;
+    scroll-padding-left:var(--pad);
+    align-items:stretch;
+  }
+  .strip::-webkit-scrollbar{display:none}
+  .strip .slot{flex:0 0 73vw;aspect-ratio:3/4;scroll-snap-align:start}
+  .strip.landscape .slot{aspect-ratio:4/3}
+  .wide-duo{grid-template-columns:1fr;gap:12px}
+  .mini-slot{max-width:none}
+  .vbtn .ring{width:56px;height:56px}
+  .vbtn .cap{font-size:10px}
+
+  /* c05 — square video lead */
+  .c02 .lead.sq{height:auto;max-height:none}
+  .c02 .strip,.c02 .wide-solo,.c02 .wide-duo,.c02 .duo-feature{grid-column:1;margin-top:0}
+
+  /* c04 strips */
+  .c04 .strip,.c04 .wide-duo,.c04 .wide-solo{grid-column:1}
+  .film-wide{grid-column:1;aspect-ratio:16/9;margin-top:0;max-height:none}
+  .film-wide .lead-overlay{left:12px;right:12px;bottom:12px;max-width:none}
+  .poster-row{grid-column:1;grid-template-columns:1fr;margin-top:0}
+  .poster-row .tallposter{aspect-ratio:3/4}
+  .poster-row .rcol{grid-template-rows:none}
+  .poster-row .rcol .slot{height:auto;aspect-ratio:16/5}
+  .strip.flat .slot{aspect-ratio:16/9}
+
+  /* c06 — EULER */
+  .c06{grid-template-columns:1fr;gap:20px}
+  .c06 .head{padding-top:0}
+  .c06 .strip,.c06 .wide-solo,.c06 .wide-duo{grid-column:1}
+  .c06 .case-num{position:relative;top:auto;left:auto;right:auto;width:auto;text-align:left}
 
   /* ── STUDIO ────────────────────────────────────────────────── */
   #studio{grid-template-columns:1fr;gap:24px;padding-top:56px;padding-bottom:56px}
@@ -957,7 +1130,7 @@ footer{
   </nav>
   <div class="nav-ol-meta">
     <span>Bishkek · worldwide</span>
-    <span><b style="color:var(--neon)">en</b> / ru</span>
+    <span class="lang"><b>en</b> / ru</span>
   </div>
 </div>
 
@@ -975,28 +1148,28 @@ footer{
     </div>
 
     <div class="hero-portrait">
-      <span class="vstamp">PATIENT N°06 — VISUAL DIRECTOR</span>
+      <span class="vstamp">FILE N°06 — CREATIVE DIRECTOR · DIGITAL FASHION</span>
       <div class="slot">
         <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
         <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-        <img alt="Alan Babayarov — portrait, camo jacket" src="assets/camo-portrait.jpg">
-        <span class="slot-label">PORTRAIT · CAMO JACKET · 35MM · 2025</span>
+        <img alt="Alan Babayarov — studio portrait over the prints" src="assets/ava-portrait.jpg" fetchpriority="high" decoding="async">
+        <span class="slot-label">PORTRAIT · OVER THE PRINTS · STUDIO · 2026</span>
       </div>
     </div>
 
     <div class="hero-side">
       <div>
-        <div class="hero-stamp">Conceptual digital fashion · AI art direction</div>
+        <div class="hero-stamp" data-i18n="hero-stamp">Creative director · Digital fashion · AI-driven design</div>
         <h1 class="hero-name">
           <span class="alan">Alan</span><br>
           <span class="baba" data-text="Babayarov">Babayarov</span>
         </h1>
       </div>
-      <p class="hero-bio">I treat AI as an <em>atelier</em>, the image as cloth, direction as the seam that holds it together. Bishkek-born, briefed worldwide.</p>
+      <p class="hero-bio" data-i18n="hero-bio">Creative director and digital fashion designer working at the point where <em>national-scale production meets AI</em>. Led design for delegations at the Olympics and the World Nomad Games, built collections for the metaverse in <em>CLO3D &amp; UE5</em>, shipped commercial casualwear at mass-market scale — all through one AI-native pipeline.</p>
       <div class="hero-meta">
-        <div><b>Digital</b> couture</div>
-        <div><b>AI</b> art direction</div>
-        <div><b>2026</b> — open book</div>
+        <div data-i18n="hero-m1"><b>State-level</b> Olympics · WNG</div>
+        <div data-i18n="hero-m2"><b>Metaverse</b> CLO3D · UE5 · AI</div>
+        <div data-i18n="hero-m3"><b>Mass market</b> casualwear at scale</div>
       </div>
     </div>
 
@@ -1016,16 +1189,16 @@ footer{
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>AI as <i>atelier</i></span>
-      <span>Image as <i>cloth</i></span>
-      <span>Patient N°<i>06</i></span>
+      <span>Olympic Games <i>Paris 2024</i></span>
+      <span>World Nomad <i>Games</i></span>
+      <span>Fashion → 3D → <i>AI</i></span>
+      <span>CLO3D · UE5 · <i>Midjourney</i></span>
       <span>Bishkek <i>→</i> worldwide</span>
-      <span>Booking <i>autumn 2026</i></span>
-      <span>AI as <i>atelier</i></span>
-      <span>Image as <i>cloth</i></span>
-      <span>Patient N°<i>06</i></span>
+      <span>Olympic Games <i>Paris 2024</i></span>
+      <span>World Nomad <i>Games</i></span>
+      <span>Fashion → 3D → <i>AI</i></span>
+      <span>CLO3D · UE5 · <i>Midjourney</i></span>
       <span>Bishkek <i>→</i> worldwide</span>
-      <span>Booking <i>autumn 2026</i></span>
     </div>
   </div>
 
@@ -1033,153 +1206,874 @@ footer{
   <section id="work" data-screen-label="02 Work">
     <div class="work-head" data-reveal>
       <div>
-        <span class="eyebrow">002 — Selected work · 2023–2026</span>
-        <h2>Four <em>files</em>.<br>One bloodline.</h2>
+        <span class="eyebrow" data-i18n="work-eyebrow">002 — Selected work · 2020–2026</span>
+        <h2 data-i18n="work-h2">Twelve <em>files</em>.<br>One bloodline.</h2>
       </div>
-      <div class="note">— Less here than there used to be. The work that earned its place: AI visuals, brand DNA, artist direction, digital couture.</div>
+      <div class="note" data-i18n="work-note">— Read in order: the digital atelier first, then the Olympic cloth, current production, and the AI files. Films play with sound. Use the filter to jump by discipline.</div>
     </div>
 
-    <!-- 01 — KAN / VISUAL CODEX -->
-    <article id="c01" class="case c01" data-case data-screen-label="C01 KAN">
-      <span class="mark">FILE 01 — <b>VISUAL CODEX</b></span>
+    <div class="filter" data-reveal aria-label="Filter cases by discipline">
+      <button class="on" data-filter="all">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="1.5" y="1.5" width="5" height="5"/><rect x="9.5" y="1.5" width="5" height="5"/><rect x="1.5" y="9.5" width="5" height="5"/><rect x="9.5" y="9.5" width="5" height="5"/></svg>
+        <span data-i18n="f-all">ALL FILES</span>
+      </button>
+      <button data-filter="craft">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="4" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><path d="M5.5 10.5 13 2M10.5 10.5 3 2"/></svg>
+        <span data-i18n="f-craft">CRAFT &amp; STATE</span>
+      </button>
+      <button data-filter="3d">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 1.5 14 5v6L8 14.5 2 11V5z"/><path d="M2 5l6 3.5L14 5M8 8.5V14.5"/></svg>
+        <span data-i18n="f-3d">3D · UE5</span>
+      </button>
+      <button data-filter="ai">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 1v4M8 11v4M1 8h4M11 8h4M3.5 3.5l2.5 2.5M10 10l2.5 2.5M12.5 3.5 10 6M6 10l-2.5 2.5"/></svg>
+        <span data-i18n="f-ai">AI</span>
+      </button>
+      <button data-filter="direction">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1.5 8s2.4-4.5 6.5-4.5S14.5 8 14.5 8 12.1 12.5 8 12.5 1.5 8 1.5 8z"/><circle cx="8" cy="8" r="2"/></svg>
+        <span data-i18n="f-dir">DIRECTION &amp; STYLING</span>
+      </button>
+    </div>
+
+    <!-- 01 — DIGITAL ATELIER · 3D / UE5 -->
+    <article id="c01" class="case c02" data-case data-cat="3d" data-screen-label="C01 Digital Atelier">
+      <span class="mark">FILE 01 — <b>DIGITAL ATELIER</b></span>
       <div class="case-num">01</div>
 
       <div class="head" data-reveal>
-        <h3>KAN <em>— a visual codex</em></h3>
-        <div class="meta">AI art direction · 2026 · triptych / posters / motion</div>
+        <h3>Digital atelier <em>— 3D · UE5</em></h3>
+        <div class="meta">digital garments · CLO3D / Blender / UE5 · 2022 → ongoing</div>
+        <div class="chips"><span class="chip">3d</span><span class="chip">ue5</span><span class="chip ai">ai assist</span></div>
       </div>
 
       <div class="body" data-reveal data-delay="1">
-        <p>A self-initiated AI series rebuilt from a private archive of Central Asian armour, manuscript margins and Soviet-era horror cinema. Three posters as one <em>statement</em>: the icon, the totem, the rider — meant to be read together, not apart.</p>
+        <p>Garments that were never sewn but hang correctly. Cut and simulated in <em>CLO3D and Marvelous Designer</em>, detailed in Blender, staged in <em>Unreal Engine 5</em> — burning villages, real-time light — with AI used where it sharpens the image, never instead of the cut.</p>
         <dl>
-          <dt>year</dt><dd>2026</dd>
-          <dt>tools</dt><dd>SDXL · ComfyUI · hand-finish</dd>
-          <dt>output</dt><dd>3 posters · 1 loop · 1 mood film</dd>
+          <dt>stack</dt><dd>CLO3D · Marvelous · Blender · UE5</dd>
+          <dt>output</dt><dd>look films · turntables · stills</dd>
+          <dt>films</dt><dd>N°01 look film · N°02 turntable</dd>
         </dl>
+        <div class="slot mini-slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <video preload="metadata" poster="assets/dg-turntable-poster.jpg" muted loop playsinline data-loop src="assets/dg-turntable.mp4" aria-label="3D garment turntable, autoplaying loop"></video>
+          <span class="slot-label">FILM 02 · TURNTABLE · CLO3D · AUTO</span>
+        </div>
       </div>
 
-      <div class="triptych" data-reveal data-delay="2">
-        <div class="slot">
+      <div class="lead sq" data-reveal data-delay="2">
+        <div class="slot" data-video>
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="KAN — the icon (helmeted figure)" src="assets/ai-khan.jpg">
-          <span class="slot-label">01 · THE ICON</span>
-        </div>
-        <div class="slot">
-          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
-          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="KAN — the totem (spider tattoo)" src="assets/ai-totemism.jpg">
-          <span class="slot-label">02 · THE TOTEM</span>
-        </div>
-        <div class="slot">
-          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
-          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="KAN — the rider (horseman on red landscape)" src="assets/ai-visualkan.jpg">
-          <span class="slot-label">03 · THE RIDER · VISUAL 2026</span>
+          <video preload="none" poster="assets/dg-look3-poster.jpg" playsinline src="assets/dg-look3.mp4"></video>
+          <button class="vbtn" aria-label="Play digital garment look film">
+            <span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="cap">PLAY <b>FILM 01</b> · LOOK 3 · 0:29 · SOUND</span>
+          </button>
+          <span class="slot-label">TOTEMISM · LOOK 3 · DIGITAL GARMENT FILM · 3D × AI</span>
         </div>
       </div>
-      <div class="swipe-hint" id="swipe-hint" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>drag to explore</span>
+
+      <div class="strip" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Unreal Engine 5 scene — avatar in burning mountain village" src="assets/dg-ue5-fire.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">UE5 · REAL-TIME SCENE</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="CLO3D render — jacquard military coat" src="assets/dg-coat.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">CLO3D · JACQUARD COAT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Camo look against rune wall — 3D render" src="assets/dg-camorunes.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">3D LOOK · RUNIC WALL</span>
+        </div>
+      </div>
+
+      <div class="duo-feature" data-reveal data-delay="4">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Mirrored render poster — red glitch bomber" src="assets/dg-renderposter.jpg" width="1100" height="767" loading="lazy" decoding="async">
+          <span class="slot-label">RENDER POSTER · MIRROR PASS · 3D</span>
+        </div>
+        <div class="slot tall">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <video preload="none" poster="assets/dg-red-loop-poster.jpg" muted loop playsinline data-loop src="assets/dg-red-loop.mp4" aria-label="Red shaman mood loop, autoplaying"></video>
+          <span class="slot-label">MOOD LOOP · AUTO</span>
+        </div>
+      </div>
+
+      <div class="strip" data-reveal>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Red jacquard hooded cloak on mannequin — CLO3D render" src="assets/dg-cloak.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">CLO3D · RED CLOAK</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <video preload="none" poster="assets/dg-tamga-loop-poster.jpg" muted loop playsinline data-loop src="assets/dg-tamga-loop.mp4" aria-label="Tamga portrait mood loop, autoplaying"></video>
+          <span class="slot-label">TAMGA LOOP · AUTO</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Bronze textured robe on mannequin — CLO3D render" src="assets/dg-robe.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">CLO3D · BRONZE ROBE</span>
+        </div>
       </div>
     </article>
 
-    <!-- 02 — EULER -->
-    <article id="c02" class="case c02" data-case data-screen-label="C02 EULER">
-      <span class="mark">FILE 02 — <b>EULER</b></span>
+    <!-- 02 — OLYMPIC & NATIONAL TEAMS -->
+    <article id="c02" class="case c03" data-case data-cat="craft" data-screen-label="C02 Olympic">
+      <span class="mark">FILE 02 — <b>NATIONAL KIT</b></span>
       <div class="case-num">02</div>
 
       <div class="head" data-reveal>
-        <h3>EULER <em>— brand DNA</em></h3>
-        <div class="meta">brand system · 2023 → ongoing · identity / garment / motion</div>
+        <div>
+          <h3>Olympic <em>&amp; national teams</em></h3>
+          <div class="meta" style="margin-top:10px">fashion design · competition &amp; ceremony wear · 2021 → 2025</div>
+          <div class="chips" style="margin-top:10px"><span class="chip">craft</span><span class="chip">production</span><span class="chip">olympic stage</span></div>
+        </div>
       </div>
 
-      <div class="body" data-reveal data-delay="1">
-        <p>An experiment in <em>mathematical clothing</em>. EULER's DNA is a single equation, rendered into a pattern, a garment, a motion identity. Each season is a new initial condition; the system unfolds the rest.</p>
-        <dl>
-          <dt>role</dt><dd>founder · art direction</dd>
-          <dt>scope</dt><dd>brand · garment · motion</dd>
-          <dt>chapters</dt><dd>Patient N°06 · N°69 · BAY×EULER</dd>
-        </dl>
-      </div>
-
-      <div class="lead" data-reveal data-delay="2">
+      <div class="lead sixteen" data-reveal data-delay="1">
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="EULER capsule — Patient N°69" src="assets/euler-grunge.jpg">
-          <span class="slot-label">BAY × EULER · TITSNISM · N°69</span>
+          <img alt="Akzhol Makhmudov in the red wolf-jaw singlet, Paris 2024 Olympics" src="assets/oly-akzhol-paris.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">A. MAKHMUDOV · PARIS 2024 · OLYMPIC SILVER</span>
+        </div>
+        <div class="lead-overlay">
+          <p>— Akzhol Makhmudov, Olympic silver, Paris 2024 — in the red wolf-jaw singlet. One design, one shot, the whole country watching.</p>
+        </div>
+      </div>
+
+      <div class="row" data-reveal data-delay="2">
+        <div class="body">
+          <p>Competition and ceremony wear for national teams — from first sketch to tech pack to the athlete walking out under the arena lights. The Kyrgyzstan kit reads like a <em>petroglyph</em>: national memory compressed into performance sportswear, cut to survive the fight. Akzhol Makhmudov took Olympic <em>silver</em> wearing these singlets; the wrestling national team now stands on world-level podiums in the ceremony kit.</p>
+          <dl>
+            <dt>stage</dt><dd>Olympic Games · World Championships · IIHF</dd>
+            <dt>medal</dt><dd>A. Makhmudov — silver, Paris 2024</dd>
+            <dt>scope</dt><dd>kits · podium jackets · tracksuits · prints</dd>
+            <dt>link</dt><dd><a href="https://www.instagram.com/olympic.kg/" target="_blank" rel="noopener" data-hover>@olympic.kg ↗</a></dd>
+          </dl>
+        </div>
+        <div class="slot" style="aspect-ratio:5/3">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Akzhol Makhmudov in the shark-print singlet, Tokyo Olympics" src="assets/oly-akzhol-tokyo.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">A. MAKHMUDOV · TOKYO · ¼ FINALS</span>
+        </div>
+      </div>
+
+      <div class="wide-duo tall" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Four wrestling medalists in the red ceremony jackets" src="assets/oly-wrest-medalists.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">WRESTLING NATIONAL TEAM · MEDALISTS · CEREMONY KIT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Wrestler on the podium with medal, red ceremony jacket" src="assets/oly-wrest-podium.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">PODIUM · SENIOR CHAMPIONSHIPS · BISHKEK</span>
+        </div>
+      </div>
+
+      <div class="wide-duo" data-reveal>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Wrestling team white tracksuits with red lattice print — three views" src="assets/oly-wrest-tracksuit.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">WRESTLING TEAM · TRACKSUIT · RENDER</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Singlet print designs — MURAS wing, gold ornament, red chevron" src="assets/oly-singlet-prints.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">SINGLET PRINTS · MURAS · ORNAMENT · CHEVRON</span>
+        </div>
+      </div>
+
+      <div class="strip" data-reveal>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Kyrgyzstan national jersey N°7 shot on petroglyph rock" src="assets/oly-jersey-back.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">KYRGYZSTAN N°7 · PETROGLYPH KIT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Wrestler walking out in custom singlet, Olympic Games" src="assets/oly-walkout.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">PARIS 2024 · WALKOUT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="National team in ceremony tracksuits" src="assets/oly-team.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">NATIONAL TEAM · CEREMONY LINE</span>
+        </div>
+      </div>
+
+      <div class="wide-duo tall" data-reveal>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Kyrgyz Hockey national team tracksuit — burgundy ornament render, IIHF" src="assets/hok-tracksuit.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">IIHF · KYRGYZ HOCKEY · TRACKSUIT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Kyrgyz Hockey home and away jersey kits, IIHF" src="assets/hok-kits.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">IIHF · HOME &amp; AWAY KITS</span>
         </div>
       </div>
     </article>
 
-    <!-- 03 — ELDZHEY -->
-    <article id="c03" class="case c03" data-case data-screen-label="C03 Eldzhey">
-      <span class="mark">FILE 03 — <b>ELDZHEY × JETLAG</b></span>
+    <!-- 03 — TOOLOR × COOL GROUP -->
+    <article id="c03" class="case c04" data-case data-cat="craft" data-screen-label="C03 Toolor">
+      <span class="mark">FILE 03 — <b>TOOLOR × COOL GROUP</b></span>
       <div class="case-num">03</div>
 
       <div class="head" data-reveal>
-        <h3>Eldzhey <em>× Jetlag Production</em></h3>
-        <div class="meta">art direction · 2023 → ongoing · MV / tour / image</div>
+        <h3>Toolor <em>— casual mix outdoor</em></h3>
+        <div class="meta">current work · brand design · Cool Group · Central Asia → export</div>
+        <div class="chips"><span class="chip">now</span><span class="chip">outdoor · casual</span><span class="chip">factory scale</span><span class="chip ai">ai film</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>The present tense of the studio. Toolor is a casual-mix-outdoor brand I design at <em>Cool Group</em> — one of the three largest garment manufacturers in Kyrgyzstan. Nomad DNA cut for the street and the mountain: puffer lines, heritage capsules, summer linen — produced at factory scale, sold across <em>Central Asia and exported to Russia</em>. Its capsule statement is <em>RUH: Nomad Core</em>, launched with an AI-assisted anamorphic film.</p>
+        <dl>
+          <dt>role</dt><dd>brand &amp; collection design</dd>
+          <dt>factory</dt><dd>Cool Group · Kyrgyzstan</dd>
+          <dt>lines</dt><dd>MUNTAMA · SANDYK · TESLA · RUH</dd>
+          <dt>market</dt><dd>Central Asia → RU export</dd>
+          <dt>link</dt><dd><a href="https://www.instagram.com/toolor_official/" target="_blank" rel="noopener" data-hover>@toolor_official ↗</a></dd>
+        </dl>
+        <div class="slot mini-slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Toolor campaign — blue puffer and teal pillow bag, nomad DNA" src="assets/tlr-campaign.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">CAMPAIGN · NOMAD DNA</span>
+        </div>
+      </div>
+
+      <div class="lead stack" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Toolor key visual — lime quilted jacket and black tote against mountains" src="assets/tlr-poster.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">TOOLOR · KEY VISUAL · MOUNTAIN LINE</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Black trench coat — CLO3D four-view lineup with studded lining" src="assets/dg-trench.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">TRENCH CONCEPT · CLO3D · STUD LINING</span>
+        </div>
+      </div>
+
+      <div class="wide-duo wide" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="MUNTAMA — ink-wash mountain puffer line, three frames" src="assets/tlr-muntama.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">MUNTAMA · PUFFER LINE · INK-WASH PRINT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="SANDYK — heritage suede capsule, ornament stitching" src="assets/tlr-sandyk.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">SANDYK · HERITAGE CAPSULE</span>
+        </div>
+      </div>
+
+      <div class="film-wide" data-reveal data-delay="4">
+        <div class="slot" data-video>
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <video preload="none" poster="assets/ruh-film-poster.jpg" playsinline src="assets/ruh-film.mp4"></video>
+          <button class="vbtn" aria-label="Play RUH capsule film">
+            <span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="cap">PLAY <b>FILM 03</b> · RUH · 0:11 · SOUND</span>
+          </button>
+          <span class="slot-label">RUH: NOMAD CORE · CAPSULE FILM · AI PIPELINE</span>
+        </div>
+        <div class="lead-overlay">
+          <p>— FILM 03 · RUH: Nomad Core. Anamorphic capsule film, AI-assisted and graded to archival monochrome — the steppe as it remembers itself.</p>
+        </div>
+      </div>
+
+      <div class="poster-row" data-reveal>
+        <div class="slot tallposter">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="RUH Nomad Core capsule drop poster" src="assets/ruh-drop.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">RUH · CAPSULE DROP · TOOLOR</span>
+        </div>
+        <div class="rcol">
+          <div class="slot">
+            <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+            <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+            <img alt="RUH: Nomad Core capsule — four-frame campaign grid" src="assets/tlr-ruh-grid.jpg" loading="lazy" decoding="async">
+            <span class="slot-label">RUH: NOMAD CORE · CAPSULE GRID</span>
+          </div>
+          <div class="slot">
+            <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+            <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+            <img alt="TESLA summer line — linen menswear lookbook, four looks" src="assets/tlr-tesla.jpg" loading="lazy" decoding="async">
+            <span class="slot-label">TESLA · SUMMER LINE · LOOKBOOK</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 — EULER · BRAND UNIVERSE -->
+    <article id="c04" class="case c06" data-case data-cat="direction ai" data-screen-label="C04 EULER">
+      <span class="mark">FILE 04 — <b>EULER · BRAND UNIVERSE</b></span>
+      <div class="case-num">04</div>
+
+      <div class="head" data-reveal>
+        <h3>EULER <em>— brand universe</em></h3>
+        <div class="meta">creative &amp; art direction · identity / pop-up / editorial · 2023 → ongoing</div>
+        <div class="chips"><span class="chip ai">ai direction</span><span class="chip">identity</span><span class="chip">editorial</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>The studio's own laboratory. EULER is a brand built like an equation: π woven into hems, ornament systems compiled into logos, AI image-making directed with a tailor's hand. Pop-ups, prints, editorial — one universe, art-directed <em>end to end</em>.</p>
+        <dl>
+          <dt>role</dt><dd>founder · creative director</dd>
+          <dt>system</dt><dd>identity · print · pop-up · editorial</dd>
+          <dt>instruments</dt><dd>AI pipeline · ornament codes</dd>
+          <dt>link</dt><dd><a href="https://www.instagram.com/eulercentralasia/" target="_blank" rel="noopener" data-hover>@eulercentralasia ↗</a></dd>
+        </dl>
+      </div>
+
+      <div class="strip" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="BAY x EULER capsule — grunge editorial" src="assets/euler-grunge.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">BAY × EULER · N°69</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER pop-up — masks and tiled room installation" src="assets/eu-popup.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">POP-UP · MASKS · INSTALLATION</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER ornament system — logo marks compiled from national ornament" src="assets/eu-ornament.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">ORNAMENT SYSTEM · IDENTITY</span>
+        </div>
+      </div>
+
+      <div class="strip landscape" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER editorial — figure climbing through a window frame" src="assets/eu-window.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">EDITORIAL · THE WINDOW</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER studio look — black layered silhouette with white ornament" src="assets/eu-studio.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">STUDIO LOOK · ORNAMENT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER detail — heel in the snow, hand-written red mark" src="assets/eu-snowheel.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">DETAIL · SNOW · HAND MARK</span>
+        </div>
+      </div>
+
+      <div class="wide-solo" data-reveal data-delay="4">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER field editorial — four frames" src="assets/eu-field.jpg" width="1645" height="364" loading="lazy" decoding="async">
+          <span class="slot-label">FIELD EDITORIAL · FOUR FRAMES</span>
+        </div>
+      </div>
+
+      <div class="wide-solo" data-reveal>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="KUTGARI — digital look board, object KW314, 3D renders" src="assets/eu-kutgari.jpg" width="1400" height="473" loading="lazy" decoding="async">
+          <span class="slot-label">KUTGARI · OBJECT KW314 · 3D LOOK BOARD</span>
+        </div>
+      </div>
+
+      <div class="wide-solo" data-reveal>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="EULER workshop editorial — five-frame contact reel" src="assets/eu-reel.jpg" width="978" height="262" loading="lazy" decoding="async">
+          <span class="slot-label">WORKSHOP REEL · FIVE FRAMES</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05 — WORLD NOMAD GAMES -->
+    <article id="c05" class="case c03" data-case data-cat="craft" data-screen-label="C05 Nomad Games">
+      <span class="mark">FILE 05 — <b>NOMAD CODE</b></span>
+      <div class="case-num">05</div>
+
+      <div class="head" data-reveal>
+        <div>
+          <h3>World <em>Nomad Games</em></h3>
+          <div class="meta" style="margin-top:10px">official line &amp; parade uniform · Astana 2024</div>
+          <div class="chips" style="margin-top:10px"><span class="chip">craft</span><span class="chip">identity</span><span class="chip">ceremony</span></div>
+        </div>
       </div>
 
       <div class="lead" data-reveal data-delay="1">
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Eldzhey — music video, interior car neon" src="assets/eldzhey-car.jpg">
-          <span class="slot-label">MV · CAR · NIGHT · TAKE 03</span>
+          <img alt="Team Kyrgyzstan with golden eagles at the Astana 2024 opening ceremony, wearing the parade uniform" src="assets/wng-eagles.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">ASTANA '24 · OPENING CEREMONY · TEAM KG · EAGLES</span>
         </div>
         <div class="lead-overlay">
-          <p>— Three years of building a silhouette designed to outlive any one song. The wardrobe operates like a sentence.</p>
+          <p>— Opening ceremony, Astana 2024. Team Kyrgyzstan enters the arena with golden eagles on their arms, in the burgundy-and-sand parade uniform.</p>
         </div>
       </div>
 
       <div class="row" data-reveal data-delay="2">
         <div class="body">
-          <p>A vocabulary of seven shapes that recombine across video, stage and street. The point was never the outfit. The point was that you'd recognise him from a hundred metres in a <em>black-and-white photograph</em>.</p>
+          <p>Official line and parade uniform for the VI World Nomad Games — Astana 2024. Nomad workwear treated as a core, not a costume: petroglyph sleeves and rings, rune-counted panels, felt logic in technical fabric — worn by Team Kyrgyzstan under the arena lights.</p>
           <dl>
-            <dt>role</dt><dd>styling · art direction</dd>
-            <dt>format</dt><dd>MV · tour · editorial</dd>
-            <dt>era</dt><dd>2023 → ongoing</dd>
+            <dt>client</dt><dd>VI World Nomad Games · Astana 2024</dd>
+            <dt>scope</dt><dd>parade uniform · official line · merch</dd>
+            <dt>ceremony</dt><dd>opening walk · Team Kyrgyzstan</dd>
+            <dt>link</dt><dd><a href="https://worldnomadgames.org/" target="_blank" rel="noopener" data-hover>worldnomadgames.org ↗</a></dd>
           </dl>
         </div>
         <div class="slot" style="aspect-ratio:5/3">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Press still" src="assets/editorial-01.jpg">
-          <span class="slot-label">PRESS · 35MM</span>
+          <img alt="World Nomad Games 2024 official bomber with petroglyph ring" src="assets/wng-bomber.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">WNG '24 · BOMBER · PETROGLYPH RING</span>
+        </div>
+      </div>
+
+      <div class="strip landscape" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="World Nomad Games official polo with topographic petroglyph print" src="assets/wng-polo.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">WNG '24 · POLO · TOPO PRINT</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="World Nomad Games organizing committee cap" src="assets/wng-cap.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">WNG '24 · COMMITTEE CAP</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="World Nomad Games opening ceremony parade, Astana arena" src="assets/wng-astana-parade.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">ASTANA '24 · ARENA PARADE</span>
+        </div>
+      </div>
+
+      <div class="strip flat" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Kyrgyz Republic parade bomber render — burgundy and sand petroglyph sleeves" src="assets/wng-bomber-render.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">PARADE BOMBER · KYRGYZ REPUBLIC · RENDER</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Kyrgyz Republic polo render with petroglyph band" src="assets/wng-polo-render.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">TEAM POLO · PETROGLYPH BAND · RENDER</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Batyr ceremony uniform sketches for the Birlik Keruen project" src="assets/wng-batyr-sketch.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">BATYR UNIFORM · CEREMONY SKETCH</span>
         </div>
       </div>
     </article>
 
-    <!-- 04 — AI ATELIER -->
-    <article id="c04" class="case c04" data-case data-screen-label="C04 AI Atelier">
-      <span class="mark">FILE 04 — <b>AI ATELIER</b></span>
-      <div class="case-num">04</div>
+    <!-- 06 — JETLAG PRODUCTION -->
+    <article id="c06" class="case c03" data-case data-cat="direction" data-screen-label="C06 Jetlag">
+      <span class="mark">FILE 06 — <b>JETLAG PRODUCTION</b></span>
+      <div class="case-num">06</div>
 
       <div class="head" data-reveal>
-        <h3>AI Atelier <em>— digital couture</em></h3>
-        <div class="meta">research · 2024 → ongoing · generative garment / film</div>
+        <div>
+          <h3>Jetlag <em>— stylist &amp; custom designer</em></h3>
+          <div class="meta" style="margin-top:10px">styling · custom pieces · music video / tour · 2020 → 2022</div>
+          <div class="chips" style="margin-top:10px"><span class="chip">styling</span><span class="chip">custom craft</span><span class="chip">production</span></div>
+        </div>
+      </div>
+
+      <div class="lead" data-reveal data-delay="1">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="URUS music video — artist standing on a car under the bridge" src="assets/jet-water.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">URUS · UNDER THE BRIDGE · NIGHT</span>
+        </div>
+        <div class="lead-overlay">
+          <p>— URUS, Eldzhey feat. Rakhim. A Rolls-Royce under water, a girl on the hood of a moving Urus. Every look built to survive stunts, water and 4K close-ups.</p>
+        </div>
+      </div>
+
+      <div class="row" data-reveal data-delay="2">
+        <div class="body">
+          <p>Stylist and custom designer inside Jetlag's biggest productions: <em>URUS</em> (Eldzhey feat. Rakhim) and <em>MINOR</em> (Miyagi &amp; Andy Panda — 135M+ views). Wardrobe as a sentence; custom one-offs — a bone-white skull vest, hand-painted boots — as its punctuation.</p>
+          <dl>
+            <dt>productions</dt><dd>URUS · MINOR</dd>
+            <dt>artists</dt><dd>Eldzhey · Miyagi &amp; Andy Panda</dd>
+            <dt>reach</dt><dd>138M+ views combined</dd>
+            <dt>link</dt><dd><a href="https://www.instagram.com/fmtjetlag/" target="_blank" rel="noopener" data-hover>@fmtjetlag ↗</a></dd>
+          </dl>
+        </div>
+        <div class="slot" style="aspect-ratio:5/3">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Eldzhey — music video, interior car neon" src="assets/eldzhey-car.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">MV · CAR · NIGHT · TAKE 03</span>
+        </div>
+      </div>
+
+      <div class="strip landscape" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="MINOR music video — abandoned train car scene" src="assets/jet-train.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">MV · TRAIN CAR · SET</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Custom bone-white skull vest, one-off piece" src="assets/jet-skullvest.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">CUSTOM · SKULL VEST · ONE-OFF</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="URUS music video — green-lit car interior" src="assets/jet-greencar.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">URUS · INTERIOR · GREEN PASS</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 07 — ARTEFACT · AI BUREAU -->
+    <article id="c07" class="case c04" data-case data-cat="ai direction" data-screen-label="C07 Artefact">
+      <span class="mark">FILE 07 — <b>ARTÉ.FACT</b></span>
+      <div class="case-num">07</div>
+
+      <div class="head" data-reveal>
+        <h3>Artefact <em>— AI bureau</em></h3>
+        <div class="meta">AI artist · commercial video &amp; photo · creative/design bureau · Bishkek</div>
+        <div class="chips"><span class="chip ai">ai video</span><span class="chip ai">ai photo</span><span class="chip">team</span><span class="chip">commercial</span></div>
       </div>
 
       <div class="body" data-reveal data-delay="1">
-        <p>A studio with no studio. Garments live as displacement maps and light — trained on archive cuts from the family, generated against contemporary silhouettes, rendered into moving image. Worn, briefly, by an actress in a film that runs <em>ninety seconds</em>.</p>
+        <p>AI artist at <em>ARTÉ.FACT</em> — a creative/design bureau where the team and I produce commercial videos and photoshoots for brands entirely through an AI pipeline. Concept, casting, light, camera — all directed; none of it shot. The showreel runs <em>one minute</em>; the clients are real.</p>
         <dl>
-          <dt>discipline</dt><dd>digital couture · film</dd>
-          <dt>stack</dt><dd>SD · ComfyUI · After Effects</dd>
-          <dt>status</dt><dd>quarterly drops</dd>
+          <dt>role</dt><dd>AI artist · direction</dd>
+          <dt>bureau</dt><dd>ARTÉ.FACT · Bishkek/KG</dd>
+          <dt>output</dt><dd>commercial video · photo · key art</dd>
+          <dt>film</dt><dd>N°04 · commercial showreel · 1:00</dd>
+          <dt>links</dt><dd><a href="https://www.instagram.com/artefact_mag/" target="_blank" rel="noopener" data-hover>@artefact_mag ↗</a> · <a href="https://www.instagram.com/artefact.bureau/" target="_blank" rel="noopener" data-hover>@artefact.bureau ↗</a></dd>
         </dl>
       </div>
 
       <div class="lead" data-reveal data-delay="2">
+        <div class="slot" data-video>
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <video preload="none" poster="assets/af-showreel-poster.jpg" playsinline src="assets/af-showreel.mp4"></video>
+          <button class="vbtn" aria-label="Play Artefact commercial AI showreel">
+            <span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="cap">PLAY <b>FILM 04</b> · COMMERCIAL SHOWREEL · 1:00 · SOUND</span>
+          </button>
+          <span class="slot-label">ARTÉ.FACT · COMMERCIAL SHOWREEL · AI</span>
+        </div>
+      </div>
+
+      <div class="strip accent" data-reveal data-delay="3">
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="AI Atelier frame" src="assets/editorial-02.jpg">
-          <span class="slot-label">FRAME 014 · 90s FILM</span>
+          <img alt="ARTÉ.FACT poster — khan portrait in engraved headdress, AI" src="assets/af-poster-khan.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">POSTER · THE KHAN · AI</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="ARTÉ.FACT poster — balbal stone statue typography, AI" src="assets/af-poster-balbal.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">POSTER · BALBAL · TYPE</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="ARTÉ.FACT poster — balbal statue in high-contrast monochrome, AI" src="assets/af-poster-balbal2.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">POSTER · BALBAL · MONO</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 08 — TOTEMISM · AI DIGITAL COLLECTION -->
+    <article id="c08" class="case c04" data-case data-cat="ai" data-screen-label="C08 Totemism">
+      <span class="mark">FILE 08 — <b>TOTEMISM</b></span>
+      <div class="case-num">08</div>
+
+      <div class="head" data-reveal>
+        <h3>Totemism <em>— AI digital collection</em></h3>
+        <div class="meta">digital fashion · authored collection · 2024 → ongoing</div>
+        <div class="chips"><span class="chip ai">ai</span><span class="chip ai">3d × ai</span><span class="chip">film</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>An authored digital collection where Tengrian myth, Soviet post-apocalypse and shamanic totemism are compiled into garments. Looks are cut in <em>CLO3D and Blender</em>, then pushed through <em>Midjourney v6, SDXL and Runway ML</em> until cloth reads as folklore. Every pattern is a mantra; every mark, an algorithm of the spirit.</p>
+        <dl>
+          <dt>stack</dt><dd>CLO3D · Blender · MJ v6 · SDXL · Runway</dd>
+          <dt>output</dt><dd>looks · posters · mood film</dd>
+          <dt>film</dt><dd>N°05 · vertical · 0:10 · sound</dd>
+        </dl>
+      </div>
+
+      <div class="lead" data-reveal data-delay="2">
+        <div class="slot" data-video>
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <video preload="none" poster="assets/tot-film-poster.jpg" playsinline src="assets/tot-film.mp4"></video>
+          <button class="vbtn" aria-label="Play Totemism mood film">
+            <span class="ring"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+            <span class="cap">PLAY <b>FILM 05</b> · 0:10 · SOUND</span>
+          </button>
+          <span class="slot-label">TOTEMISM · MOOD FILM · MJ + RUNWAY</span>
+        </div>
+      </div>
+
+      <div class="strip" data-reveal data-delay="3">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Totemism — the khan poster, AI generated" src="assets/tot-khan.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">THE KHAN · POSTER · AI</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Manas x Attila — AI khan portrait" src="assets/tot-manas.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">MANAS × ATTILA · AI</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Totemism — crowned yurt poster, AI generated" src="assets/tot-yurt.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">CROWNED YURT · POSTER · AI</span>
+        </div>
+      </div>
+
+      <div class="wide-duo" data-reveal data-delay="4">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Digital garments lineup — 3D avatars in Totemism looks" src="assets/tot-garments.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">DIGITAL GARMENTS · LINEUP · 3D × AI</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Elder Shamans series — AI portraits" src="assets/tot-shamans.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">ELDER SHAMANS · SERIES · AI</span>
+        </div>
+      </div>
+    </article>
+
+
+
+    <!-- 09 — RAPHA · BURNING MAN -->
+    <article id="c09" class="case c06" data-case data-cat="3d" data-screen-label="C09 Rapha">
+      <span class="mark">FILE 09 — <b>BURNING MAN</b></span>
+      <div class="case-num">09</div>
+
+      <div class="head" data-reveal>
+        <h3>Rapha <em>— Burning Man</em></h3>
+        <div class="meta">artist commission · CLO3D looks &amp; prints · full-body suit</div>
+        <div class="chips"><span class="chip">3d · clo3d</span><span class="chip">print design</span><span class="chip">stagewear</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>A commission for the artist Rapha: a full-body suit built in <em>CLO3D</em> and printed edge to edge with UV-fire ornament — a phoenix tree over the chest, dotted ember currents down the legs. Made to be seen at night, in the desert, from a hundred metres.</p>
+        <dl>
+          <dt>client</dt><dd>Rapha · Burning Man</dd>
+          <dt>build</dt><dd>CLO3D fit · engineered print</dd>
+          <dt>output</dt><dd>suit · print system · look</dd>
+        </dl>
+      </div>
+
+      <div class="strip" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Rapha Burning Man suit — front, neon phoenix print, CLO3D" src="assets/raf-suit-front.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">SUIT · FRONT · CLO3D</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Engineered print — rune tree of life, dotted linework" src="assets/raf-print-tree.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">PRINT · TREE OF RUNES</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Rapha Burning Man suit — back, ember ornament, CLO3D" src="assets/raf-suit-back.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">SUIT · BACK · CLO3D</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 10 — KOZ DUJNO · XR EXHIBITION -->
+    <article id="c10" class="case c06" data-case data-cat="ai 3d" data-screen-label="C10 KOZ DUJNO">
+      <span class="mark">FILE 10 — <b>KOZ DUJNO · XR</b></span>
+      <div class="case-num">10</div>
+
+      <div class="head" data-reveal>
+        <h3>KOZ DUJNO <em>— XR exhibition</em></h3>
+        <div class="meta">solo exhibition · Bishkek · 2023 · XR / AR / VR</div>
+        <div class="chips"><span class="chip ai">ai</span><span class="chip">3d → vr</span><span class="chip">ar tags</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>An extended-reality exhibition staged in Bishkek, 2023. Sculptural 3D objects built for <em>virtual reality</em> and walked through in VR headsets; physical works carrying <em>AR tags</em> of the EULER brand that opened AI-generated layers on a phone screen. One room, three realities.</p>
+        <dl>
+          <dt>format</dt><dd>solo show · XR install</dd>
+          <dt>stack</dt><dd>3D objects · VR headsets · AR tags · AI visuals</dd>
+          <dt>venue</dt><dd>Bishkek · 2023</dd>
+          <dt>link</dt><dd><a href="https://www.instagram.com/kozdujno/" target="_blank" rel="noopener" data-hover>@kozdujno ↗</a></dd>
+        </dl>
+      </div>
+
+      <div class="wide-duo" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="KOZ DUJNO exhibition poster — glyph matrix" src="assets/xr-kozdujno-poster.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">KOZ DUJNO · POSTER · GLYPH MATRIX</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="AR demo — phone revealing a virtual figure over the sculpture, EULER AR tag" src="assets/xr-ar-demo.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">AR LAYER · EULER TAG · LIVE</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11 — MADH × ACNE STUDIOS -->
+    <article id="c11" class="case c06" data-case data-cat="ai" data-screen-label="C11 MADH">
+      <span class="mark">FILE 11 — <b>MADH × ACNE</b></span>
+      <div class="case-num">11</div>
+
+      <div class="head" data-reveal>
+        <h3>MADH <em>— Acne Studios sub-brand</em></h3>
+        <div class="meta">content creation · AI-adapted photoshoots · lookbook</div>
+        <div class="chips"><span class="chip ai">ai content</span><span class="chip">lookbook</span><span class="chip">fitting → frame</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>Content for MADH, a sub-brand of Acne Studios: I created the imagery and adapted it with <em>AI into their photoshoots</em> — fitting-room takes regenerated into clean lookbook frames, light and set rebuilt around the garment while the clothes stay true to the rack.</p>
+        <dl>
+          <dt>brand</dt><dd>MADH · Acne Studios</dd>
+          <dt>role</dt><dd>content · AI adaptation</dd>
+          <dt>pipeline</dt><dd>shoot → AI pass → lookbook</dd>
+          <dt>link</dt><dd><a href="https://www.instagram.com/madh.official/" target="_blank" rel="noopener" data-hover>@madh.official ↗</a></dd>
+        </dl>
+      </div>
+
+      <div class="strip" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="MADH lookbook — yellow jacket and chain-print denim, AI-adapted frame" src="assets/madh-look1.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">LOOK 01 · AI-ADAPTED FRAME</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="MADH lookbook — dark shirt and washed denim, AI-adapted frame" src="assets/madh-look2.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">LOOK 02 · AI-ADAPTED FRAME</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="MADH fitting — raw studio take before the AI pass" src="assets/madh-fitting.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">FITTING · RAW TAKE · BEFORE</span>
+        </div>
+      </div>
+    </article>
+
+
+
+    <!-- 12 — QOORCHAQ · ART DIRECTION & STYLING -->
+    <article id="c12" class="case c06" data-case data-cat="direction" data-screen-label="C12 Qoorchaq">
+      <span class="mark">FILE 12 — <b>QOORCHAQ</b></span>
+      <div class="case-num">12</div>
+
+      <div class="head" data-reveal>
+        <h3>Qoorchaq <em>— myth against silence</em></h3>
+        <div class="meta">art direction &amp; styling · Kyrgyz myth · social project</div>
+        <div class="chips"><span class="chip">art direction</span><span class="chip">styling</span><span class="chip">social</span></div>
+      </div>
+
+      <div class="body" data-reveal data-delay="1">
+        <p>Art direction and styling for <em>Qoorchaq</em> — a project that speaks about domestic violence through Kyrgyz myth. The deer-mother's antlers worn as both crown and cage, mourning veils lit by fire, a skull chained to the hearth: the imagery says what the victims are not allowed to. Shot on film, styled to be read as <em>folklore</em> — because that is where the silence hides.</p>
+        <dl>
+          <dt>role</dt><dd>art direction · styling</dd>
+          <dt>theme</dt><dd>Kyrgyz myth × domestic violence</dd>
+          <dt>medium</dt><dd>photo series · costume</dd>
+          <dt>link</dt><dd><a href="https://www.instagram.com/qoorchaq/" target="_blank" rel="noopener" data-hover>@qoorchaq ↗</a></dd>
+        </dl>
+      </div>
+
+      <div class="strip" data-reveal data-delay="2">
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Qoorchaq — veiled figure crowned with deer antlers, black and white" src="assets/qor-antlers.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">BUGU ENE · ANTLER CROWN</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Qoorchaq — three veiled figures with burning headdresses at dusk" src="assets/qor-firehats.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">MOURNING FIRE · THREE SISTERS</span>
+        </div>
+        <div class="slot">
+          <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
+          <span class="slot-corner bl"></span><span class="slot-corner br"></span>
+          <img alt="Qoorchaq — deer skull with flowers chained to the ground" src="assets/qor-skull.jpg" loading="lazy" decoding="async">
+          <span class="slot-label">THE HEARTH · SKULL &amp; CHAIN</span>
         </div>
       </div>
     </article>
@@ -1188,44 +2082,46 @@ footer{
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      <span>Atelier N°<i>06</i></span>
+      <span>Totemism · <i>AI collection</i></span>
+      <span>Jetlag · <i>138M+ views</i></span>
+      <span>KOZ DUJNO · <i>XR '23</i></span>
+      <span>Creative · <i>AI</i> · direction</span>
       <span>Studio open · <i>autumn 2026</i></span>
-      <span>AI · <i>couture</i> · direction</span>
-      <span><i>Bishkek</i> → worldwide</span>
-      <span>Atelier N°<i>06</i></span>
+      <span>Totemism · <i>AI collection</i></span>
+      <span>Jetlag · <i>138M+ views</i></span>
+      <span>KOZ DUJNO · <i>XR '23</i></span>
+      <span>Creative · <i>AI</i> · direction</span>
       <span>Studio open · <i>autumn 2026</i></span>
-      <span>AI · <i>couture</i> · direction</span>
-      <span><i>Bishkek</i> → worldwide</span>
     </div>
   </div>
 
   <!-- ═══ 03 · STUDIO ═══════════════════════════════════════════ -->
   <section id="studio" data-screen-label="03 Studio">
     <div class="col-left" data-reveal>
-      <span class="eyebrow">003 — Studio · how I work</span>
-      <h2>One person.<br>One <em>bloodline</em>.<br>Three ways in.</h2>
-      <p>Alan Babayarov is a Bishkek-born designer and art director working in the seam between AI image-making, digital couture and lived craft. The studio is a small atelier of one — him, a tailor on call, and a quiet computer. He directs, generates, cuts, and signs.</p>
+      <span class="eyebrow" data-i18n="st-eyebrow">003 — Manifesto · what this is</span>
+      <h2 data-i18n="st-h2">Directed for<br>the <em>podium</em>.<br>Engineered for<br>the <em>feed</em>.</h2>
+      <p data-i18n="st-p">I run a design team, not a solo desk. That changes what "creative direction" means here — it's not one idea I have, it's a pipeline I built so that a national uniform, a metaverse collection, and a mass-market drop can all move through the same system without any of them getting diluted. AI is the connective tissue — not a shortcut, but the reason a team this size can direct state-level precision, digital-native production, and commercial volume at the same time. Born in Moscow, April 2000. Inside LVMH certified, 2025.</p>
     </div>
     <div class="col-right">
       <div class="cap" data-reveal data-delay="1">
         <div class="n">— 01</div>
         <div>
-          <h4>AI <em>art direction</em></h4>
-          <p>Visual systems for artists, films and brands. Posters, key art, mood films. From private archive to published moodboard in a fortnight.</p>
+          <h4 data-i18n="st-c1h">State-level <em>work</em></h4>
+          <p data-i18n="st-c1p">A uniform for the Olympics or the World Nomad Games has one shot: a stadium, a broadcast, a technical committee that checks every seam before it checks the story.</p>
         </div>
       </div>
       <div class="cap" data-reveal data-delay="2">
         <div class="n">— 02</div>
         <div>
-          <h4>Digital <em>couture</em></h4>
-          <p>Generative garments rendered against live bodies. For runway film, capsule launches, music videos, and the occasional one-shot exhibition.</p>
+          <h4 data-i18n="st-c2h">Metaverse <em>/ digital</em></h4>
+          <p data-i18n="st-c2p">A collection built in CLO3D and Unreal Engine 5 has no fabric at all — its only test is whether the render holds up under a camera that never existed until someone built it.</p>
         </div>
       </div>
       <div class="cap" data-reveal data-delay="3">
         <div class="n">— 03</div>
         <div>
-          <h4>Atelier <em>residency</em></h4>
-          <p>A month inside the studio — direct collaboration on a single garment, identity, or film. Includes the conversation behind the work. One slot per quarter.</p>
+          <h4 data-i18n="st-c3h">Mass <em>market</em></h4>
+          <p data-i18n="st-c3p">A casual piece for the mass market has the least glamorous test of all: does a stranger buy it. Three different juries, three definitions of "good" — one pipeline that survives all of them.</p>
         </div>
       </div>
     </div>
@@ -1236,13 +2132,12 @@ footer{
     <div class="contact-wrap" data-reveal>
       <span class="eyebrow" style="margin-bottom:8px">004 — Open file · contact</span>
       <h2>Let's build<br><em>something</em><span class="tick"></span></h2>
-      <a class="email" href="mailto:hello@babayarov.studio" data-hover>hello@babayarov.studio</a>
+      <a class="email" href="mailto:alan.babayarov@gmail.com" data-hover>alan.babayarov@gmail.com</a>
       <div class="available"><span class="pip"></span>Studio open — taking work for autumn 2026</div>
       <ul class="socials">
-        <li><a href="#" data-hover>Instagram</a></li>
-        <li><a href="#" data-hover>Behance</a></li>
-        <li><a href="#" data-hover>Telegram</a></li>
-        <li><a href="#" data-hover>LinkedIn</a></li>
+        <li><a href="https://www.instagram.com/alain4hmspns/" target="_blank" rel="noopener" data-hover>Instagram</a></li>
+        <li><a href="https://t.me/dodogepoison" target="_blank" rel="noopener" data-hover>Telegram</a></li>
+        <li><a href="https://linktr.ee/alain4hmspns" target="_blank" rel="noopener" data-hover>Linktree</a></li>
       </ul>
     </div>
   </section>
@@ -1251,7 +2146,7 @@ footer{
 
 <footer>
   <div>© 2026 Alan Babayarov · Bishkek, Kyrgyzstan</div>
-  <div>Designed in-house · v6.0 · bloodline</div>
+  <div>Fashion · 3D/UE5 · AI — designed in-house · v6.1</div>
 </footer>
 
 <script>
@@ -1366,6 +2261,178 @@ footer{
     triptych.addEventListener('scroll', () => swipeHint.classList.add('gone'), { once:true, passive:true });
   }
 
+  /* ── Films — click-to-play with sound, one at a time ─────── */
+  const filmSlots = document.querySelectorAll('[data-video]');
+  const pauseOthers = current => {
+    filmSlots.forEach(w=>{
+      const v = w.querySelector('video');
+      if(v !== current && !v.paused) v.pause();
+    });
+  };
+  filmSlots.forEach(w=>{
+    const v   = w.querySelector('video');
+    const btn = w.querySelector('.vbtn');
+    const toggle = ()=>{
+      if(v.paused){ pauseOthers(v); v.muted = false; v.play().catch(()=>{}); }
+      else v.pause();
+    };
+    if(btn) btn.addEventListener('click', e=>{ e.stopPropagation(); toggle(); });
+    v.addEventListener('click', toggle);
+    v.addEventListener('play',  ()=>w.classList.add('playing'));
+    v.addEventListener('pause', ()=>w.classList.remove('playing'));
+    v.addEventListener('ended', ()=>{ w.classList.remove('playing'); v.currentTime = 0; });
+  });
+  /* pause films that scroll out of view */
+  const filmIo = new IntersectionObserver(es=>es.forEach(e=>{
+    const v = e.target;
+    if(!e.isIntersecting && !v.paused) v.pause();
+  }),{threshold:.12});
+  filmSlots.forEach(w=>filmIo.observe(w.querySelector('video')));
+
+  /* ── Ambient loops (turntable) — autoplay only when visible ── */
+  const loopIo = new IntersectionObserver(es=>es.forEach(e=>{
+    const v = e.target;
+    if(e.isIntersecting) v.play().catch(()=>{});
+    else v.pause();
+  }),{threshold:.3});
+  document.querySelectorAll('video[data-loop]').forEach(v=>loopIo.observe(v));
+  /* Chrome pauses video-only media in hidden tabs and won't resume it — restart in-view loops */
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState!=='visible') return;
+    document.querySelectorAll('video[data-loop]').forEach(v=>{
+      const r = v.getBoundingClientRect();
+      if(r.top < innerHeight && r.bottom > 0) v.play().catch(()=>{});
+    });
+  });
+
+  /* ── Category filter ─────────────────────────────────────── */
+  const filterBar = document.querySelector('.filter');
+  if(filterBar){
+    filterBar.addEventListener('click', e=>{
+      const btn = e.target.closest('button');
+      if(!btn) return;
+      filterBar.querySelectorAll('button').forEach(b=>b.classList.toggle('on', b===btn));
+      const f = btn.dataset.filter;
+      document.querySelectorAll('article[data-case]').forEach(a=>{
+        const cats = (a.dataset.cat||'').split(' ');
+        a.classList.toggle('filtered', f!=='all' && !cats.includes(f));
+      });
+      /* newly shown cases may have un-revealed elements */
+      document.querySelectorAll('article[data-case]:not(.filtered) [data-reveal]:not(.in)')
+        .forEach(el=>el.classList.add('in'));
+    });
+  }
+
+  /* ── RU / EN — selector-keyed dictionary, EN kept as source ─ */
+  const RU = {
+    'nav.nav ul li:nth-child(1) a':'Работы',
+    'nav.nav ul li:nth-child(2) a':'Студия',
+    'nav.nav ul li:nth-child(3) a':'Контакты',
+    '.nav-ol-link[href="#work"]':'<span class="nav-ol-num">01</span>Работы',
+    '.nav-ol-link[href="#studio"]':'<span class="nav-ol-num">02</span>Студия',
+    '.nav-ol-link[href="#contact"]':'<span class="nav-ol-num">03</span>Контакты',
+    '[data-i18n="hero-stamp"]':'Креативный директор · Диджитал-фэшн · AI-дизайн',
+    '[data-i18n="hero-bio"]':'Креативный директор и цифровой fashion-дизайнер на стыке <em>производств национального масштаба и AI</em>. Вёл дизайн для делегаций на Олимпиаде и Всемирных играх кочевников, строит коллекции для метавселенной в <em>CLO3D и UE5</em>, выпускает коммерческий кэжуал в тираже масс-маркета — всё через единый AI-пайплайн.',
+    '[data-i18n="hero-m1"]':'<b>Гос-уровень</b> Олимпиада · ВИК',
+    '[data-i18n="hero-m2"]':'<b>Метавселенная</b> CLO3D · UE5 · AI',
+    '[data-i18n="hero-m3"]':'<b>Масс-маркет</b> кэжуал в тираже',
+    '[data-i18n="work-eyebrow"]':'002 — Избранные работы · 2020–2026',
+    '[data-i18n="work-h2"]':'Двенадцать <em>файлов</em>.<br>Одна кровь.',
+    '[data-i18n="work-note"]':'— Читайте по порядку: сначала цифровое ателье, затем олимпийская ткань, текущее производство и AI-файлы. Фильмы играют со звуком. Фильтр — для навигации по дисциплинам.',
+    '[data-i18n="f-all"]':'ВСЕ ФАЙЛЫ',
+    '[data-i18n="f-craft"]':'РЕМЕСЛО и ГОС',
+    '[data-i18n="f-3d"]':'3D · UE5',
+    '[data-i18n="f-ai"]':'AI',
+    '[data-i18n="f-dir"]':'ДИРЕКШН и СТАЙЛИНГ',
+    '#c01 .head h3':'Цифровое ателье <em>— 3D · UE5</em>',
+    '#c01 .head .meta':'цифровая одежда · CLO3D / Blender / UE5 · 2022 → сейчас',
+    '#c01 .body p':'Одежда, которую никогда не шили, но она висит правильно. Крой и симуляция в <em>CLO3D и Marvelous Designer</em>, детали в Blender, сцены в <em>Unreal Engine 5</em> — горящие деревни, свет в реальном времени; AI — там, где он делает изображение резче, но никогда вместо кроя.',
+    '#c01 .body dl':'<dt>стек</dt><dd>CLO3D · Marvelous · Blender · UE5</dd><dt>формат</dt><dd>лук-фильмы · turntable · кадры</dd><dt>фильмы</dt><dd>N°01 лук-фильм · N°02 turntable</dd>',
+    '#c02 .head h3':'Олимпиада <em>и сборные</em>',
+    '#c02 .head .meta':'fashion-дизайн · соревновательная и церемониальная форма · 2021 → 2025',
+    '#c02 .body p':'Форма для национальных сборных — от первого эскиза и тех-пака до выхода атлета под свет арены. Кыргызстанский комплект читается как <em>петроглиф</em>: национальная память, сжатая в спортивную форму, скроенную выдержать схватку. В этих трико Акжол Махмудов взял олимпийское <em>серебро</em>; сборная по борьбе поднимается на мировые подиумы в церемониальном комплекте.',
+    '#c02 .body dl':'<dt>сцена</dt><dd>Олимпийские игры · чемпионаты мира · IIHF</dd><dt>медаль</dt><dd>А. Махмудов — серебро, Париж 2024</dd><dt>объём</dt><dd>трико · подиумные куртки · костюмы · принты</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/olympic.kg/" target="_blank" rel="noopener" data-hover>@olympic.kg ↗</a></dd>',
+    '#c02 .lead-overlay p':'— Акжол Махмудов, олимпийское серебро, Париж 2024 — в красном трико с волчьей пастью. Один дизайн, один шанс, вся страна у экранов.',
+    '#c03 .head h3':'Toolor <em>— casual mix outdoor</em>',
+    '#c03 .head .meta':'текущая работа · дизайн бренда · Cool Group · Центральная Азия → экспорт',
+    '#c03 .body p':'Настоящее время студии. Toolor — кэжуал-микс-аутдор бренд, который я веду в <em>Cool Group</em> — одном из трёх крупнейших швейных производств Кыргызстана. ДНК кочевника, скроенная для улицы и гор: пуховые линейки, капсулы наследия, летний лён — фабричный масштаб, продажи по <em>Центральной Азии и экспорт в Россию</em>. Капсульный манифест бренда — <em>RUH: Nomad Core</em>, запущенный AI-фильмом.',
+    '#c03 .body dl':'<dt>роль</dt><dd>дизайн бренда и коллекций</dd><dt>фабрика</dt><dd>Cool Group · Кыргызстан</dd><dt>линейки</dt><dd>MUNTAMA · SANDYK · TESLA · RUH</dd><dt>рынок</dt><dd>Центральная Азия → экспорт в РФ</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/toolor_official/" target="_blank" rel="noopener" data-hover>@toolor_official ↗</a></dd>',
+    '#c03 .film-wide .lead-overlay p':'— ФИЛЬМ 03 · RUH: Nomad Core. Анаморфный капсульный фильм, AI-ассист и архивный монохром — степь, какой она помнит себя.',
+    '#c04 .head h3':'EULER <em>— вселенная бренда</em>',
+    '#c04 .head .meta':'креативный и арт-дирекшн · айдентика / поп-ап / эдиториал · 2023 → сейчас',
+    '#c04 .body p':'Собственная лаборатория студии. EULER — бренд, построенный как уравнение: π вшито в подгибы, орнаментные системы скомпилированы в логотипы, AI-имиджмейкинг направляется рукой портного. Поп-апы, принты, эдиториал — одна вселенная, срежиссированная <em>от и до</em>.',
+    '#c04 .body dl':'<dt>роль</dt><dd>основатель · креативный директор</dd><dt>система</dt><dd>айдентика · принт · поп-ап · эдиториал</dd><dt>инструменты</dt><dd>AI-пайплайн · коды орнамента</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/eulercentralasia/" target="_blank" rel="noopener" data-hover>@eulercentralasia ↗</a></dd>',
+    '#c05 .head h3':'Всемирные <em>игры кочевников</em>',
+    '#c05 .head .meta':'официальная линейка и парадная форма · Астана 2024',
+    '#c05 .body p':'Официальная линейка и парадная форма VI Всемирных игр кочевников — Астана 2024. Одежда кочевника как код, а не костюм: петроглифы на рукавах, рунные панели, логика войлока в техничной ткани — на сборной Кыргызстана под светом арены.',
+    '#c05 .body dl':'<dt>клиент</dt><dd>VI Всемирные игры кочевников · Астана 2024</dd><dt>объём</dt><dd>парадная форма · официальная линейка · мерч</dd><dt>церемония</dt><dd>выход открытия · сборная КР</dd><dt>ссылка</dt><dd><a href="https://worldnomadgames.org/" target="_blank" rel="noopener" data-hover>worldnomadgames.org ↗</a></dd>',
+    '#c05 .lead-overlay p':'— Церемония открытия, Астана 2024. Сборная Кыргызстана входит на арену с беркутами на руках — в бордово-песчаной парадной форме.',
+    '#c06 .head h3':'Jetlag <em>— стилист и кастом-дизайнер</em>',
+    '#c06 .head .meta':'стайлинг · кастомные вещи · клипы / туры · 2020 → 2022',
+    '#c06 .body p':'Стилист и кастом-дизайнер в крупнейших продакшенах Jetlag: <em>URUS</em> (Элджей feat. Rakhim) и <em>MINOR</em> (Miyagi &amp; Andy Panda — 135M+ просмотров). Гардероб как предложение; кастомные одиночки — костяной жилет-череп, расписанные вручную ботинки — его знаки препинания.',
+    '#c06 .body dl':'<dt>продакшены</dt><dd>URUS · MINOR</dd><dt>артисты</dt><dd>Элджей · Miyagi &amp; Andy Panda</dd><dt>охват</dt><dd>138M+ просмотров суммарно</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/fmtjetlag/" target="_blank" rel="noopener" data-hover>@fmtjetlag ↗</a></dd>',
+    '#c06 .lead-overlay p':'— URUS, Элджей feat. Rakhim. Rolls-Royce под водой, девушка на капоте движущегося Urus. Каждый лук построен так, чтобы пережить трюки, воду и крупный план в 4K.',
+    '#c07 .head h3':'Artefact <em>— AI-бюро</em>',
+    '#c07 .head .meta':'AI-художник · коммерческое видео и фото · креатив-бюро · Бишкек',
+    '#c07 .body p':'AI-художник в <em>ARTÉ.FACT</em> — креативном бюро, где мы с командой делаем коммерческие видео и фотосъёмки для брендов полностью через AI-пайплайн. Концепция, кастинг, свет, камера — всё срежиссировано; ничего не снято. Шоурил длится <em>одну минуту</em>; клиенты — настоящие.',
+    '#c07 .body dl':'<dt>роль</dt><dd>AI-художник · дирекшн</dd><dt>бюро</dt><dd>ARTÉ.FACT · Бишкек/KG</dd><dt>формат</dt><dd>коммерческое видео · фото · key art</dd><dt>фильм</dt><dd>N°04 · коммерческий шоурил · 1:00</dd><dt>ссылки</dt><dd><a href="https://www.instagram.com/artefact_mag/" target="_blank" rel="noopener" data-hover>@artefact_mag ↗</a> · <a href="https://www.instagram.com/artefact.bureau/" target="_blank" rel="noopener" data-hover>@artefact.bureau ↗</a></dd>',
+    '#c08 .head h3':'Totemism <em>— AI-коллекция</em>',
+    '#c08 .head .meta':'цифровая мода · авторская коллекция · 2024 → сейчас',
+    '#c08 .body p':'Авторская цифровая коллекция, где тенгрианский миф, советский пост-апокалипсис и шаманский тотемизм компилируются в одежду. Луки кроятся в <em>CLO3D и Blender</em>, затем проходят через <em>Midjourney v6, SDXL и Runway ML</em>, пока ткань не начнёт читаться как фольклор. Каждый паттерн — мантра; каждый знак — алгоритм духа.',
+    '#c08 .body dl':'<dt>стек</dt><dd>CLO3D · Blender · MJ v6 · SDXL · Runway</dd><dt>формат</dt><dd>луки · постеры · муд-фильм</dd><dt>фильм</dt><dd>N°05 · вертикальный · 0:10 · звук</dd>',
+    '#c09 .head h3':'Rapha <em>— Burning Man</em>',
+    '#c09 .head .meta':'заказ артиста · CLO3D луки и принты · фулл-боди костюм',
+    '#c09 .body p':'Заказ для артиста Rapha: фулл-боди костюм, построенный в <em>CLO3D</em> и запечатанный от края до края UV-огненным орнаментом — феникс-древо на груди, пунктирные потоки углей по ногам. Сделан, чтобы его видели ночью, в пустыне, за сто метров.',
+    '#c09 .body dl':'<dt>клиент</dt><dd>Rapha · Burning Man</dd><dt>сборка</dt><dd>посадка в CLO3D · инженерный принт</dd><dt>формат</dt><dd>костюм · система принтов · лук</dd>',
+    '#c10 .head h3':'KOZ DUJNO <em>— XR-выставка</em>',
+    '#c10 .head .meta':'персональная выставка · Бишкек · 2023 · XR / AR / VR',
+    '#c10 .body p':'Выставка расширенной реальности в Бишкеке, 2023. Скульптурные 3D-объекты, построенные для <em>виртуальной реальности</em> и осмотренные в VR-очках; физические работы с <em>AR-тегами</em> бренда EULER, открывавшими AI-слои на экране телефона. Одна комната — три реальности.',
+    '#c10 .body dl':'<dt>формат</dt><dd>соло-шоу · XR-инсталляция</dd><dt>стек</dt><dd>3D-объекты · VR-очки · AR-теги · AI-визуалы</dd><dt>площадка</dt><dd>Бишкек · 2023</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/kozdujno/" target="_blank" rel="noopener" data-hover>@kozdujno ↗</a></dd>',
+    '#c11 .head h3':'MADH <em>— суббренд Acne Studios</em>',
+    '#c11 .head .meta':'создание контента · AI-адаптация фотосъёмок · лукбук',
+    '#c11 .body p':'Контент для MADH, суббренда Acne Studios: я создавал изображения и адаптировал их с помощью <em>AI под фотосъёмки бренда</em> — примерочные кадры перегенерированы в чистые лукбук-фреймы, свет и сцена пересобраны вокруг вещи, а одежда остаётся верна рейлу.',
+    '#c11 .body dl':'<dt>бренд</dt><dd>MADH · Acne Studios</dd><dt>роль</dt><dd>контент · AI-адаптация</dd><dt>пайплайн</dt><dd>съёмка → AI-проход → лукбук</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/madh.official/" target="_blank" rel="noopener" data-hover>@madh.official ↗</a></dd>',
+    '#c12 .head h3':'Qoorchaq <em>— миф против тишины</em>',
+    '#c12 .head .meta':'арт-дирекшн и стайлинг · кыргызский миф · социальный проект',
+    '#c12 .body p':'Арт-дирекшн и стайлинг для <em>Qoorchaq</em> — проекта, говорящего о домашнем насилии через кыргызский миф. Рога Бугу Эне как корона и клетка одновременно, траурные покрывала в свете огня, череп на цепи у очага: образы говорят то, что жертвам говорить не позволено. Снято на плёнку, стилизовано как <em>фольклор</em> — потому что именно там прячется тишина.',
+    '#c12 .body dl':'<dt>роль</dt><dd>арт-дирекшн · стайлинг</dd><dt>тема</dt><dd>кыргызский миф × домашнее насилие</dd><dt>медиум</dt><dd>фотосерия · костюм</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/qoorchaq/" target="_blank" rel="noopener" data-hover>@qoorchaq ↗</a></dd>',
+    '[data-i18n="st-eyebrow"]':'003 — Манифест · что это',
+    '[data-i18n="st-h2"]':'Срежиссировано<br>для <em>подиума</em>.<br>Собрано<br>для <em>ленты</em>.',
+    '[data-i18n="st-p"]':'Я веду дизайн-команду, а не сольный стол. Это меняет смысл «креативного дирекшна»: это не одна моя идея, а пайплайн, который я построил, чтобы национальная форма, коллекция для метавселенной и масс-маркет дроп шли через одну систему, не разбавляя друг друга. AI — соединительная ткань: не короткий путь, а причина, по которой команда такого размера ведёт гос-точность, цифровое производство и коммерческий тираж одновременно. Родился в Москве, апрель 2000. Сертификат Inside LVMH, 2025.',
+    '[data-i18n="st-c1h"]':'Гос-уровень <em>работы</em>',
+    '[data-i18n="st-c1p"]':'У формы для Олимпиады или Игр кочевников один дубль: стадион, эфир и техническая комиссия, которая проверяет каждый шов раньше, чем историю.',
+    '[data-i18n="st-c2h"]':'Метавселенная <em>/ digital</em>',
+    '[data-i18n="st-c2p"]':'У коллекции в CLO3D и Unreal Engine 5 нет ткани вовсе — её единственный тест: держится ли рендер под камерой, которой не существовало, пока её не построили.',
+    '[data-i18n="st-c3h"]':'Масс-<em>маркет</em>',
+    '[data-i18n="st-c3p"]':'У кэжуал-вещи для массового рынка самый негламурный тест: купит ли её незнакомец. Три разных жюри, три определения «хорошо» — и один пайплайн, который выдерживает все.',
+    '#contact .eyebrow':'004 — Открытый файл · контакт',
+    '#contact h2':'Соберём<br><em>что-то</em><span class="tick"></span>',
+    '#contact .available':'<span class="pip"></span>Студия открыта — берём работу на осень 2026',
+    'footer div:nth-child(1)':'© 2026 Алан Бабаяров · Бишкек, Кыргызстан',
+    'footer div:nth-child(2)':'Fashion · 3D/UE5 · AI — сделано в студии · v6.3'
+  };
+  const EN = {};
+  let lang = 'en';
+  try{ lang = localStorage.getItem('v6-lang') || 'en'; }catch(e){}
+  const applyLang = l => {
+    Object.keys(RU).forEach(sel=>{
+      const el = document.querySelector(sel);
+      if(!el) return;
+      if(!(sel in EN)) EN[sel] = el.innerHTML;
+      el.innerHTML = (l==='ru') ? RU[sel] : EN[sel];
+    });
+    document.documentElement.lang = (l==='ru') ? 'ru' : 'en';
+    document.querySelectorAll('.lang').forEach(t=>{
+      t.innerHTML = (l==='ru') ? 'en / <b>ru</b>' : '<b>en</b> / ru';
+    });
+    try{ localStorage.setItem('v6-lang', l); }catch(e){}
+    lang = l;
+  };
+  document.querySelectorAll('.lang').forEach(t=>{
+    t.addEventListener('click', ()=>applyLang(lang==='ru' ? 'en' : 'ru'));
+  });
+  if(lang==='ru') applyLang('ru');
+
   /* ── Idle sparks — desktop only, skipped on touch ───────── */
   if(!isCoarse){
     function spark(){
@@ -1393,11 +2460,38 @@ footer{
     "mood": "blood"
   }/*EDITMODE-END*/;
 </script>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <div id="tweaks-root"></div>
+<script>
+/* Tweaks panel is a design tool — its 2MB React/Babel stack loads only with ?tweaks in the URL. */
+(()=>{
+  if(!new URLSearchParams(location.search).has('tweaks')) return;
+  /* retype the babel scripts BEFORE Babel loads, or its own auto-run executes them
+     a second time (double createRoot) */
+  const jsxTags = [...document.querySelectorAll('script[type="text/babel"]')];
+  jsxTags.forEach(t => t.type = 'text/jsx-inert');
+  const libs = [
+    ['https://unpkg.com/react@18.3.1/umd/react.development.js','sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L'],
+    ['https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js','sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm'],
+    ['https://unpkg.com/@babel/standalone@7.29.0/babel.min.js','sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y']
+  ];
+  const load = (src, integrity) => new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.integrity = integrity; s.crossOrigin = 'anonymous';
+    s.onload = res; s.onerror = rej;
+    document.body.appendChild(s);
+  });
+  libs.reduce((p, [s, i]) => p.then(() => load(s, i)), Promise.resolve()).then(async () => {
+    /* transform + eval in document order — Babel's own transformScriptTags does not
+       guarantee src-before-inline ordering when invoked after DOMContentLoaded */
+    for (const tag of jsxTags) {
+      const code = tag.src ? await (await fetch(tag.src)).text() : tag.textContent;
+      const out = Babel.transform(code, { presets: ['react'], filename: tag.src || 'inline.jsx' }).code;
+      (0, eval)(out);
+    }
+  }).catch(e => console.warn('tweaks panel failed to load', e));
+})();
+</script>
 <script type="text/babel">
 const V6_MOODS = {
   bordeaux:{ bordeaux:'#26060e', bordeauxRgb:'38,6,14',  bordeaux2:'#420914', bordeaux2Rgb:'66,9,20',
