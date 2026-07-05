@@ -56,6 +56,8 @@ Each case has `.chips` marking medium: plain chips = craft/3D, `.chip.ai` = AI-i
 - Videos are `preload="none"` (turntable: `preload="metadata"`) with poster JPEGs.
 - React 18 + Babel Standalone (~2 MB) load **only with `?tweaks` in the URL** — normal visitors never fetch them. The loader manually transforms `text/babel` scripts in document order (Babel's own `transformScriptTags` misorders src-vs-inline when invoked post-DOMContentLoaded).
 - Keep new images ≤ ~1400px, JPEG q≈72 (System.Drawing recompress pattern in git history).
+- Every content `<img>` wider than 760px carries `srcset` with a 720px `*-sm.jpg` sibling (`sizes="(max-width:880px) 92vw, 46vw"`). When adding an image, generate the `-sm` variant too.
+- `.case` uses `content-visibility:auto` (skip off-screen layout/paint). The mobile media block disables orb/grain animation, per-image filters and per-slot blend overlays — don't re-enable them under 880px.
 
 ## CSS Custom Properties
 

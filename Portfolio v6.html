@@ -563,8 +563,12 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
   max-width:36ch;justify-self:end;text-align:right;
 }
 
-/* Case wrapper */
-.case{position:relative;padding:80px 0;border-top:1px solid var(--bordeaux)}
+/* Case wrapper — content-visibility lets the browser skip layout/paint
+   for cases far off-screen (major scroll win on the long page) */
+.case{
+  position:relative;padding:80px 0;border-top:1px solid var(--bordeaux);
+  content-visibility:auto;contain-intrinsic-size:auto 1400px;
+}
 .case .mark{
   position:absolute;left:-4px;top:-1px;
   display:flex;align-items:center;gap:14px;
@@ -862,10 +866,17 @@ footer{
   /* Performance: strip blend modes + reduce atmosphere on mobile */
   :root{--grain-op:.15;--scan-op:.10;--orb-op:.22;--slot-grain-op:.20}
   /* mix-blend-mode forces CPU compositing — use normal on touch */
-  .fx-grain{animation:none;mix-blend-mode:normal;opacity:.12}
+  .fx-grain{animation:none;mix-blend-mode:normal;opacity:.12;inset:0}
   .fx-scan{mix-blend-mode:normal;opacity:.08}
-  .fx-orbs{filter:blur(50px) saturate(1.2)}
-  .fx-orbs span{mix-blend-mode:normal}
+  /* static, lightly-blurred orbs: one raster instead of a full-screen
+     blur filter re-composited every scrolled frame */
+  .fx-orbs{filter:blur(36px) saturate(1.2)}
+  .fx-orbs span,.fx-orbs span.a,.fx-orbs span.b,.fx-orbs span.c{mix-blend-mode:normal;animation:none;will-change:auto}
+  /* per-image filters + per-slot blend overlays are paint-bound on phones */
+  .slot img{filter:none;transition:none}
+  .slot::before{mix-blend-mode:normal;opacity:.55}
+  .slot::after{display:none}
+  .slot:hover img{transform:none}
 
   body{font-size:17px}
 
@@ -1152,7 +1163,7 @@ footer{
       <div class="slot">
         <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
         <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-        <img alt="Alan Babayarov — studio portrait over the prints" src="assets/ava-portrait.jpg" fetchpriority="high" decoding="async">
+        <img alt="Alan Babayarov — studio portrait over the prints" src="assets/ava-portrait.jpg" srcset="assets/ava-portrait-sm.jpg 720w, assets/ava-portrait.jpg 1179w" sizes="(max-width:880px) 92vw, 46vw" fetchpriority="high" decoding="async">
         <span class="slot-label">PORTRAIT · OVER THE PRINTS · STUDIO · 2026</span>
       </div>
     </div>
@@ -1278,7 +1289,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Unreal Engine 5 scene — avatar in burning mountain village" src="assets/dg-ue5-fire.jpg" loading="lazy" decoding="async">
+          <img alt="Unreal Engine 5 scene — avatar in burning mountain village" src="assets/dg-ue5-fire.jpg" srcset="assets/dg-ue5-fire-sm.jpg 720w, assets/dg-ue5-fire.jpg 1100w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">UE5 · REAL-TIME SCENE</span>
         </div>
         <div class="slot">
@@ -1290,7 +1301,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Camo look against rune wall — 3D render" src="assets/dg-camorunes.jpg" loading="lazy" decoding="async">
+          <img alt="Camo look against rune wall — 3D render" src="assets/dg-camorunes.jpg" srcset="assets/dg-camorunes-sm.jpg 720w, assets/dg-camorunes.jpg 788w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">3D LOOK · RUNIC WALL</span>
         </div>
       </div>
@@ -1299,7 +1310,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Mirrored render poster — red glitch bomber" src="assets/dg-renderposter.jpg" width="1100" height="767" loading="lazy" decoding="async">
+          <img alt="Mirrored render poster — red glitch bomber" src="assets/dg-renderposter.jpg" srcset="assets/dg-renderposter-sm.jpg 720w, assets/dg-renderposter.jpg 1100w" sizes="(max-width:880px) 92vw, 46vw" width="1100" height="767" loading="lazy" decoding="async">
           <span class="slot-label">RENDER POSTER · MIRROR PASS · 3D</span>
         </div>
         <div class="slot tall">
@@ -1349,7 +1360,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Akzhol Makhmudov in the red wolf-jaw singlet, Paris 2024 Olympics" src="assets/oly-akzhol-paris.jpg" loading="lazy" decoding="async">
+          <img alt="Akzhol Makhmudov in the red wolf-jaw singlet, Paris 2024 Olympics" src="assets/oly-akzhol-paris.jpg" srcset="assets/oly-akzhol-paris-sm.jpg 720w, assets/oly-akzhol-paris.jpg 1000w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">A. MAKHMUDOV · PARIS 2024 · OLYMPIC SILVER</span>
         </div>
         <div class="lead-overlay">
@@ -1394,13 +1405,13 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Wrestling team white tracksuits with red lattice print — three views" src="assets/oly-wrest-tracksuit.jpg" loading="lazy" decoding="async">
+          <img alt="Wrestling team white tracksuits with red lattice print — three views" src="assets/oly-wrest-tracksuit.jpg" srcset="assets/oly-wrest-tracksuit-sm.jpg 720w, assets/oly-wrest-tracksuit.jpg 1280w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">WRESTLING TEAM · TRACKSUIT · RENDER</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Singlet print designs — MURAS wing, gold ornament, red chevron" src="assets/oly-singlet-prints.jpg" loading="lazy" decoding="async">
+          <img alt="Singlet print designs — MURAS wing, gold ornament, red chevron" src="assets/oly-singlet-prints.jpg" srcset="assets/oly-singlet-prints-sm.jpg 720w, assets/oly-singlet-prints.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">SINGLET PRINTS · MURAS · ORNAMENT · CHEVRON</span>
         </div>
       </div>
@@ -1409,13 +1420,13 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Kyrgyzstan national jersey N°7 shot on petroglyph rock" src="assets/oly-jersey-back.jpg" loading="lazy" decoding="async">
+          <img alt="Kyrgyzstan national jersey N°7 shot on petroglyph rock" src="assets/oly-jersey-back.jpg" srcset="assets/oly-jersey-back-sm.jpg 720w, assets/oly-jersey-back.jpg 821w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">KYRGYZSTAN N°7 · PETROGLYPH KIT</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Wrestler walking out in custom singlet, Olympic Games" src="assets/oly-walkout.jpg" loading="lazy" decoding="async">
+          <img alt="Wrestler walking out in custom singlet, Olympic Games" src="assets/oly-walkout.jpg" srcset="assets/oly-walkout-sm.jpg 720w, assets/oly-walkout.jpg 1000w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">PARIS 2024 · WALKOUT</span>
         </div>
         <div class="slot">
@@ -1430,13 +1441,13 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Kyrgyz Hockey national team tracksuit — burgundy ornament render, IIHF" src="assets/hok-tracksuit.jpg" loading="lazy" decoding="async">
+          <img alt="Kyrgyz Hockey national team tracksuit — burgundy ornament render, IIHF" src="assets/hok-tracksuit.jpg" srcset="assets/hok-tracksuit-sm.jpg 720w, assets/hok-tracksuit.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">IIHF · KYRGYZ HOCKEY · TRACKSUIT</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Kyrgyz Hockey home and away jersey kits, IIHF" src="assets/hok-kits.jpg" loading="lazy" decoding="async">
+          <img alt="Kyrgyz Hockey home and away jersey kits, IIHF" src="assets/hok-kits.jpg" srcset="assets/hok-kits-sm.jpg 720w, assets/hok-kits.jpg 1370w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">IIHF · HOME &amp; AWAY KITS</span>
         </div>
       </div>
@@ -1480,7 +1491,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Black trench coat — CLO3D four-view lineup with studded lining" src="assets/dg-trench.jpg" loading="lazy" decoding="async">
+          <img alt="Black trench coat — CLO3D four-view lineup with studded lining" src="assets/dg-trench.jpg" srcset="assets/dg-trench-sm.jpg 720w, assets/dg-trench.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">TRENCH CONCEPT · CLO3D · STUD LINING</span>
         </div>
       </div>
@@ -1489,13 +1500,13 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="MUNTAMA — ink-wash mountain puffer line, three frames" src="assets/tlr-muntama.jpg" loading="lazy" decoding="async">
+          <img alt="MUNTAMA — ink-wash mountain puffer line, three frames" src="assets/tlr-muntama.jpg" srcset="assets/tlr-muntama-sm.jpg 720w, assets/tlr-muntama.jpg 1048w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">MUNTAMA · PUFFER LINE · INK-WASH PRINT</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="SANDYK — heritage suede capsule, ornament stitching" src="assets/tlr-sandyk.jpg" loading="lazy" decoding="async">
+          <img alt="SANDYK — heritage suede capsule, ornament stitching" src="assets/tlr-sandyk.jpg" srcset="assets/tlr-sandyk-sm.jpg 720w, assets/tlr-sandyk.jpg 1043w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">SANDYK · HERITAGE CAPSULE</span>
         </div>
       </div>
@@ -1520,20 +1531,20 @@ footer{
         <div class="slot tallposter">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="RUH Nomad Core capsule drop poster" src="assets/ruh-drop.jpg" loading="lazy" decoding="async">
+          <img alt="RUH Nomad Core capsule drop poster" src="assets/ruh-drop.jpg" srcset="assets/ruh-drop-sm.jpg 720w, assets/ruh-drop.jpg 1000w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">RUH · CAPSULE DROP · TOOLOR</span>
         </div>
         <div class="rcol">
           <div class="slot">
             <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
             <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-            <img alt="RUH: Nomad Core capsule — four-frame campaign grid" src="assets/tlr-ruh-grid.jpg" loading="lazy" decoding="async">
+            <img alt="RUH: Nomad Core capsule — four-frame campaign grid" src="assets/tlr-ruh-grid.jpg" srcset="assets/tlr-ruh-grid-sm.jpg 720w, assets/tlr-ruh-grid.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
             <span class="slot-label">RUH: NOMAD CORE · CAPSULE GRID</span>
           </div>
           <div class="slot">
             <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
             <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-            <img alt="TESLA summer line — linen menswear lookbook, four looks" src="assets/tlr-tesla.jpg" loading="lazy" decoding="async">
+            <img alt="TESLA summer line — linen menswear lookbook, four looks" src="assets/tlr-tesla.jpg" srcset="assets/tlr-tesla-sm.jpg 720w, assets/tlr-tesla.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
             <span class="slot-label">TESLA · SUMMER LINE · LOOKBOOK</span>
           </div>
         </div>
@@ -1565,7 +1576,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="BAY x EULER capsule — grunge editorial" src="assets/euler-grunge.jpg" loading="lazy" decoding="async">
+          <img alt="BAY x EULER capsule — grunge editorial" src="assets/euler-grunge.jpg" srcset="assets/euler-grunge-sm.jpg 720w, assets/euler-grunge.jpg 1080w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">BAY × EULER · N°69</span>
         </div>
         <div class="slot">
@@ -1577,7 +1588,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="EULER ornament system — logo marks compiled from national ornament" src="assets/eu-ornament.jpg" loading="lazy" decoding="async">
+          <img alt="EULER ornament system — logo marks compiled from national ornament" src="assets/eu-ornament.jpg" srcset="assets/eu-ornament-sm.jpg 720w, assets/eu-ornament.jpg 851w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">ORNAMENT SYSTEM · IDENTITY</span>
         </div>
       </div>
@@ -1586,13 +1597,13 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="EULER editorial — figure climbing through a window frame" src="assets/eu-window.jpg" loading="lazy" decoding="async">
+          <img alt="EULER editorial — figure climbing through a window frame" src="assets/eu-window.jpg" srcset="assets/eu-window-sm.jpg 720w, assets/eu-window.jpg 826w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">EDITORIAL · THE WINDOW</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="EULER studio look — black layered silhouette with white ornament" src="assets/eu-studio.jpg" loading="lazy" decoding="async">
+          <img alt="EULER studio look — black layered silhouette with white ornament" src="assets/eu-studio.jpg" srcset="assets/eu-studio-sm.jpg 720w, assets/eu-studio.jpg 1049w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">STUDIO LOOK · ORNAMENT</span>
         </div>
         <div class="slot">
@@ -1607,7 +1618,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="EULER field editorial — four frames" src="assets/eu-field.jpg" width="1645" height="364" loading="lazy" decoding="async">
+          <img alt="EULER field editorial — four frames" src="assets/eu-field.jpg" srcset="assets/eu-field-sm.jpg 720w, assets/eu-field.jpg 1645w" sizes="(max-width:880px) 92vw, 46vw" width="1645" height="364" loading="lazy" decoding="async">
           <span class="slot-label">FIELD EDITORIAL · FOUR FRAMES</span>
         </div>
       </div>
@@ -1616,7 +1627,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="KUTGARI — digital look board, object KW314, 3D renders" src="assets/eu-kutgari.jpg" width="1400" height="473" loading="lazy" decoding="async">
+          <img alt="KUTGARI — digital look board, object KW314, 3D renders" src="assets/eu-kutgari.jpg" srcset="assets/eu-kutgari-sm.jpg 720w, assets/eu-kutgari.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" width="1400" height="473" loading="lazy" decoding="async">
           <span class="slot-label">KUTGARI · OBJECT KW314 · 3D LOOK BOARD</span>
         </div>
       </div>
@@ -1625,7 +1636,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="EULER workshop editorial — five-frame contact reel" src="assets/eu-reel.jpg" width="978" height="262" loading="lazy" decoding="async">
+          <img alt="EULER workshop editorial — five-frame contact reel" src="assets/eu-reel.jpg" srcset="assets/eu-reel-sm.jpg 720w, assets/eu-reel.jpg 978w" sizes="(max-width:880px) 92vw, 46vw" width="978" height="262" loading="lazy" decoding="async">
           <span class="slot-label">WORKSHOP REEL · FIVE FRAMES</span>
         </div>
       </div>
@@ -1648,7 +1659,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Team Kyrgyzstan with golden eagles at the Astana 2024 opening ceremony, wearing the parade uniform" src="assets/wng-eagles.jpg" loading="lazy" decoding="async">
+          <img alt="Team Kyrgyzstan with golden eagles at the Astana 2024 opening ceremony, wearing the parade uniform" src="assets/wng-eagles.jpg" srcset="assets/wng-eagles-sm.jpg 720w, assets/wng-eagles.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">ASTANA '24 · OPENING CEREMONY · TEAM KG · EAGLES</span>
         </div>
         <div class="lead-overlay">
@@ -1669,7 +1680,7 @@ footer{
         <div class="slot" style="aspect-ratio:5/3">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="World Nomad Games 2024 official bomber with petroglyph ring" src="assets/wng-bomber.jpg" loading="lazy" decoding="async">
+          <img alt="World Nomad Games 2024 official bomber with petroglyph ring" src="assets/wng-bomber.jpg" srcset="assets/wng-bomber-sm.jpg 720w, assets/wng-bomber.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">WNG '24 · BOMBER · PETROGLYPH RING</span>
         </div>
       </div>
@@ -1678,19 +1689,19 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="World Nomad Games official polo with topographic petroglyph print" src="assets/wng-polo.jpg" loading="lazy" decoding="async">
+          <img alt="World Nomad Games official polo with topographic petroglyph print" src="assets/wng-polo.jpg" srcset="assets/wng-polo-sm.jpg 720w, assets/wng-polo.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">WNG '24 · POLO · TOPO PRINT</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="World Nomad Games organizing committee cap" src="assets/wng-cap.jpg" loading="lazy" decoding="async">
+          <img alt="World Nomad Games organizing committee cap" src="assets/wng-cap.jpg" srcset="assets/wng-cap-sm.jpg 720w, assets/wng-cap.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">WNG '24 · COMMITTEE CAP</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="World Nomad Games opening ceremony parade, Astana arena" src="assets/wng-astana-parade.jpg" loading="lazy" decoding="async">
+          <img alt="World Nomad Games opening ceremony parade, Astana arena" src="assets/wng-astana-parade.jpg" srcset="assets/wng-astana-parade-sm.jpg 720w, assets/wng-astana-parade.jpg 1100w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">ASTANA '24 · ARENA PARADE</span>
         </div>
       </div>
@@ -1699,7 +1710,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Kyrgyz Republic parade bomber render — burgundy and sand petroglyph sleeves" src="assets/wng-bomber-render.jpg" loading="lazy" decoding="async">
+          <img alt="Kyrgyz Republic parade bomber render — burgundy and sand petroglyph sleeves" src="assets/wng-bomber-render.jpg" srcset="assets/wng-bomber-render-sm.jpg 720w, assets/wng-bomber-render.jpg 1293w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">PARADE BOMBER · KYRGYZ REPUBLIC · RENDER</span>
         </div>
         <div class="slot">
@@ -1734,7 +1745,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="URUS music video — artist standing on a car under the bridge" src="assets/jet-water.jpg" loading="lazy" decoding="async">
+          <img alt="URUS music video — artist standing on a car under the bridge" src="assets/jet-water.jpg" srcset="assets/jet-water-sm.jpg 720w, assets/jet-water.jpg 1600w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">URUS · UNDER THE BRIDGE · NIGHT</span>
         </div>
         <div class="lead-overlay">
@@ -1755,7 +1766,7 @@ footer{
         <div class="slot" style="aspect-ratio:5/3">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Eldzhey — music video, interior car neon" src="assets/eldzhey-car.jpg" loading="lazy" decoding="async">
+          <img alt="Eldzhey — music video, interior car neon" src="assets/eldzhey-car.jpg" srcset="assets/eldzhey-car-sm.jpg 720w, assets/eldzhey-car.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">MV · CAR · NIGHT · TAKE 03</span>
         </div>
       </div>
@@ -1764,19 +1775,19 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="MINOR music video — abandoned train car scene" src="assets/jet-train.jpg" loading="lazy" decoding="async">
+          <img alt="MINOR music video — abandoned train car scene" src="assets/jet-train.jpg" srcset="assets/jet-train-sm.jpg 720w, assets/jet-train.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">MV · TRAIN CAR · SET</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Custom bone-white skull vest, one-off piece" src="assets/jet-skullvest.jpg" loading="lazy" decoding="async">
+          <img alt="Custom bone-white skull vest, one-off piece" src="assets/jet-skullvest.jpg" srcset="assets/jet-skullvest-sm.jpg 720w, assets/jet-skullvest.jpg 804w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">CUSTOM · SKULL VEST · ONE-OFF</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="URUS music video — green-lit car interior" src="assets/jet-greencar.jpg" loading="lazy" decoding="async">
+          <img alt="URUS music video — green-lit car interior" src="assets/jet-greencar.jpg" srcset="assets/jet-greencar-sm.jpg 720w, assets/jet-greencar.jpg 1600w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">URUS · INTERIOR · GREEN PASS</span>
         </div>
       </div>
@@ -1821,19 +1832,19 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="ARTÉ.FACT poster — khan portrait in engraved headdress, AI" src="assets/af-poster-khan.jpg" loading="lazy" decoding="async">
+          <img alt="ARTÉ.FACT poster — khan portrait in engraved headdress, AI" src="assets/af-poster-khan.jpg" srcset="assets/af-poster-khan-sm.jpg 720w, assets/af-poster-khan.jpg 928w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">POSTER · THE KHAN · AI</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="ARTÉ.FACT poster — balbal stone statue typography, AI" src="assets/af-poster-balbal.jpg" loading="lazy" decoding="async">
+          <img alt="ARTÉ.FACT poster — balbal stone statue typography, AI" src="assets/af-poster-balbal.jpg" srcset="assets/af-poster-balbal-sm.jpg 720w, assets/af-poster-balbal.jpg 785w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">POSTER · BALBAL · TYPE</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="ARTÉ.FACT poster — balbal statue in high-contrast monochrome, AI" src="assets/af-poster-balbal2.jpg" loading="lazy" decoding="async">
+          <img alt="ARTÉ.FACT poster — balbal statue in high-contrast monochrome, AI" src="assets/af-poster-balbal2.jpg" srcset="assets/af-poster-balbal2-sm.jpg 720w, assets/af-poster-balbal2.jpg 785w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">POSTER · BALBAL · MONO</span>
         </div>
       </div>
@@ -1876,19 +1887,19 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Totemism — the khan poster, AI generated" src="assets/tot-khan.jpg" loading="lazy" decoding="async">
+          <img alt="Totemism — the khan poster, AI generated" src="assets/tot-khan.jpg" srcset="assets/tot-khan-sm.jpg 720w, assets/tot-khan.jpg 785w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">THE KHAN · POSTER · AI</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Manas x Attila — AI khan portrait" src="assets/tot-manas.jpg" loading="lazy" decoding="async">
+          <img alt="Manas x Attila — AI khan portrait" src="assets/tot-manas.jpg" srcset="assets/tot-manas-sm.jpg 720w, assets/tot-manas.jpg 1000w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">MANAS × ATTILA · AI</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Totemism — crowned yurt poster, AI generated" src="assets/tot-yurt.jpg" loading="lazy" decoding="async">
+          <img alt="Totemism — crowned yurt poster, AI generated" src="assets/tot-yurt.jpg" srcset="assets/tot-yurt-sm.jpg 720w, assets/tot-yurt.jpg 1100w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">CROWNED YURT · POSTER · AI</span>
         </div>
       </div>
@@ -1897,13 +1908,13 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Digital garments lineup — 3D avatars in Totemism looks" src="assets/tot-garments.jpg" loading="lazy" decoding="async">
+          <img alt="Digital garments lineup — 3D avatars in Totemism looks" src="assets/tot-garments.jpg" srcset="assets/tot-garments-sm.jpg 720w, assets/tot-garments.jpg 1100w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">DIGITAL GARMENTS · LINEUP · 3D × AI</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Elder Shamans series — AI portraits" src="assets/tot-shamans.jpg" loading="lazy" decoding="async">
+          <img alt="Elder Shamans series — AI portraits" src="assets/tot-shamans.jpg" srcset="assets/tot-shamans-sm.jpg 720w, assets/tot-shamans.jpg 1400w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">ELDER SHAMANS · SERIES · AI</span>
         </div>
       </div>
@@ -1935,7 +1946,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Rapha Burning Man suit — front, neon phoenix print, CLO3D" src="assets/raf-suit-front.jpg" loading="lazy" decoding="async">
+          <img alt="Rapha Burning Man suit — front, neon phoenix print, CLO3D" src="assets/raf-suit-front.jpg" srcset="assets/raf-suit-front-sm.jpg 720w, assets/raf-suit-front.jpg 788w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">SUIT · FRONT · CLO3D</span>
         </div>
         <div class="slot">
@@ -1947,7 +1958,7 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="Rapha Burning Man suit — back, ember ornament, CLO3D" src="assets/raf-suit-back.jpg" loading="lazy" decoding="async">
+          <img alt="Rapha Burning Man suit — back, ember ornament, CLO3D" src="assets/raf-suit-back.jpg" srcset="assets/raf-suit-back-sm.jpg 720w, assets/raf-suit-back.jpg 788w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">SUIT · BACK · CLO3D</span>
         </div>
       </div>
@@ -2015,19 +2026,19 @@ footer{
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="MADH lookbook — yellow jacket and chain-print denim, AI-adapted frame" src="assets/madh-look1.jpg" loading="lazy" decoding="async">
+          <img alt="MADH lookbook — yellow jacket and chain-print denim, AI-adapted frame" src="assets/madh-look1.jpg" srcset="assets/madh-look1-sm.jpg 720w, assets/madh-look1.jpg 933w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">LOOK 01 · AI-ADAPTED FRAME</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="MADH lookbook — dark shirt and washed denim, AI-adapted frame" src="assets/madh-look2.jpg" loading="lazy" decoding="async">
+          <img alt="MADH lookbook — dark shirt and washed denim, AI-adapted frame" src="assets/madh-look2.jpg" srcset="assets/madh-look2-sm.jpg 720w, assets/madh-look2.jpg 933w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">LOOK 02 · AI-ADAPTED FRAME</span>
         </div>
         <div class="slot">
           <span class="slot-corner tl"></span><span class="slot-corner tr"></span>
           <span class="slot-corner bl"></span><span class="slot-corner br"></span>
-          <img alt="MADH fitting — raw studio take before the AI pass" src="assets/madh-fitting.jpg" loading="lazy" decoding="async">
+          <img alt="MADH fitting — raw studio take before the AI pass" src="assets/madh-fitting.jpg" srcset="assets/madh-fitting-sm.jpg 720w, assets/madh-fitting.jpg 1050w" sizes="(max-width:880px) 92vw, 46vw" loading="lazy" decoding="async">
           <span class="slot-label">FITTING · RAW TAKE · BEFORE</span>
         </div>
       </div>
