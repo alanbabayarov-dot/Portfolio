@@ -2,6 +2,10 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Deploy (Cloudflare Workers)
+
+Live at **https://portfoliovisualkan.alan-babayarov.workers.dev** — the `portfoliovisualkan` worker builds automatically from pushes to `main` of github.com/alanbabayarov-dot/Portfolio (this repo). Static-assets-only worker: `wrangler.jsonc` points assets at the repo root; `.assetsignore` excludes the obsidian vault, tooling and `Portfolio v6.html`. **`index.html` is the deployed copy of `Portfolio v6.html` — re-copy it before every push.** Unknown paths fall back to index (single-page-application mode), so excluded files return the homepage, not 404.
+
 ## Running the Site
 
 No build system. Open `Portfolio v6.html` directly in a browser, or use the `portfolio-v6` server from `.claude/launch.json`. Google Fonts load from CDN; everything else is local.
