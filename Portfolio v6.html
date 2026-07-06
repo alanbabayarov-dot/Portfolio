@@ -334,6 +334,10 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
   transition:border-color .4s ease, box-shadow .4s ease;
 }
 .slot img{
+  /* absolute fill: media can never size (or resize) the slot — iOS Safari
+     resolves height:100% against aspect-ratio boxes unreliably on lazy
+     load, which made photos blow up to natural size mid-scroll */
+  position:absolute;inset:0;
   display:block;width:100%;height:100%;object-fit:cover;
   filter:contrast(1.05) saturate(.82) brightness(.92);
   transition:filter 1s ease, transform 10s ease;
@@ -792,6 +796,7 @@ footer{
 
 /* ─── Video slots ────────────────────────────────────────────── */
 .slot video{
+  position:absolute;inset:0;
   display:block;width:100%;height:100%;object-fit:cover;
   filter:contrast(1.05) saturate(.85) brightness(.9);
   transition:filter .5s ease;background:#000;
@@ -831,14 +836,16 @@ footer{
 .wide-duo.tall .slot{aspect-ratio:3/2}
 .wide-duo.wide .slot{aspect-ratio:9/4}
 .wide-solo .slot{aspect-ratio:auto}
-.wide-solo .slot img{height:auto}
+/* wide-solo is the one slot type sized BY its image — keep the img in flow
+   (safe from load-jumps because these imgs carry width/height attributes) */
+.wide-solo .slot img{position:static;height:auto}
 .strip.flat .slot{aspect-ratio:16/9}
 .strip.four{grid-template-columns:repeat(4,1fr)}
 .strip.accent{grid-template-columns:2fr 1fr 1fr;align-items:start}
 .wide-solo.half{max-width:640px}
-/* feature duo — wide render left, tall accent loop right, bottoms aligned */
+/* feature duo — wide render left, tall accent loop right, bottoms aligned
+   (img fill is handled by the global absolute .slot img rule) */
 .duo-feature{display:grid;grid-template-columns:2fr 1fr;gap:14px}
-.duo-feature .slot:first-child img{position:absolute;inset:0;width:100%;height:100%}
 .duo-feature .slot.tall{aspect-ratio:3/4}
 /* stacked lead — poster on top, second frame fills the column */
 .c04 .lead.stack{display:flex;flex-direction:column;gap:14px;height:auto;max-height:none}
