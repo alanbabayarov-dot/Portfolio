@@ -57,7 +57,8 @@ Each case has `.chips` marking medium: plain chips = craft/3D, `.chip.ai` = AI-i
 - React 18 + Babel Standalone (~2 MB) load **only with `?tweaks` in the URL** — normal visitors never fetch them. The loader manually transforms `text/babel` scripts in document order (Babel's own `transformScriptTags` misorders src-vs-inline when invoked post-DOMContentLoaded).
 - Keep new images ≤ ~1400px, JPEG q≈72 (System.Drawing recompress pattern in git history).
 - Every content `<img>` wider than 760px carries `srcset` with a 720px `*-sm.jpg` sibling (`sizes="(max-width:880px) 92vw, 46vw"`). When adding an image, generate the `-sm` variant too.
-- `.case` uses `content-visibility:auto` (skip off-screen layout/paint). The mobile media block disables orb/grain animation, per-image filters and per-slot blend overlays — don't re-enable them under 880px.
+- `.case` uses `contain:layout paint` (scopes reflow/repaint per case). Do **not** switch this to `content-visibility:auto` — case heights vary 1000–3000px on mobile, and a flat `contain-intrinsic-size` guess makes off-screen cases snap to true height on reveal, which reads as "photos expanding" and janks scroll (tried and reverted). The mobile media block disables orb/grain animation, per-image filters and per-slot blend overlays — don't re-enable them under 880px.
+- Horizontal swipe carousels (`.strip`, `.c01 .triptych`) need both `overscroll-behavior-x:contain` and `touch-action:pan-x pan-y` on mobile, or a fast horizontal swipe can trigger the browser's back/forward gesture or vertical rubber-banding instead of scrolling the carousel.
 
 ## CSS Custom Properties
 

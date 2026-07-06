@@ -370,7 +370,9 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
    01 — HERO  (camo portrait dominates, copy lives in the seam)
    ═══════════════════════════════════════════════════════════════════ */
 #hero{
+  /* svh: stable when the mobile URL bar collapses — vh resizes mid-scroll */
   min-height:100vh;
+  min-height:100svh;
   padding-top:96px;padding-bottom:46px;
   display:grid;
   grid-template-columns:minmax(0, 7fr) minmax(0, 5fr);
@@ -392,7 +394,7 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 .hero-portrait{
   grid-column:1/2;grid-row:2;
   position:relative;
-  height:78vh;max-height:820px;min-height:480px;
+  height:78vh;height:78svh;max-height:820px;min-height:480px;
   align-self:stretch;
 }
 .hero-portrait .slot{height:100%}
@@ -563,11 +565,15 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
   max-width:36ch;justify-self:end;text-align:right;
 }
 
-/* Case wrapper — content-visibility lets the browser skip layout/paint
-   for cases far off-screen (major scroll win on the long page) */
+/* Case wrapper. content-visibility:auto was tried here but real case
+   heights range 1000–3000px on mobile — a flat contain-intrinsic-size
+   guess made off-screen cases snap to their true height on reveal,
+   which reads as "photos jumping/expanding" and janks the scroll.
+   contain:layout paint still scopes reflow/repaint to each case without
+   guessing a size, so it's free of that failure mode. */
 .case{
   position:relative;padding:80px 0;border-top:1px solid var(--bordeaux);
-  content-visibility:auto;contain-intrinsic-size:auto 1400px;
+  contain:layout paint;
 }
 .case .mark{
   position:absolute;left:-4px;top:-1px;
@@ -619,7 +625,7 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 .c02 .case-num{left:0;top:-40px}
 .c02 .head{display:flex;flex-direction:column;gap:16px;padding-top:30px}
 .c02 .body{align-self:end;padding-bottom:8px}
-.c02 .lead{grid-column:2/3;grid-row:1/3;height:80vh;max-height:780px;position:relative}
+.c02 .lead{grid-column:2/3;grid-row:1/3;height:80vh;height:80svh;max-height:780px;position:relative}
 .c02 .lead .slot{height:100%}
 
 /* Case 03 — ELDZHEY (full-bleed cinematic) */
@@ -643,7 +649,7 @@ section{position:relative;padding:clamp(56px,9vw,140px) var(--pad)}
 .c04 .case-num{right:0;top:-44px}
 .c04 .head{grid-column:1/2;display:flex;flex-direction:column;gap:16px;padding-top:30px}
 .c04 .body{grid-column:1/2;align-self:end;padding-bottom:8px}
-.c04 .lead{grid-column:2/3;grid-row:1/3;height:72vh;max-height:680px}
+.c04 .lead{grid-column:2/3;grid-row:1/3;height:72vh;height:72svh;max-height:680px}
 .c04 .lead .slot{height:100%}
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -966,7 +972,7 @@ footer{
   .c01 .triptych{
     grid-column:1;
     display:flex;flex-direction:row;
-    overflow-x:auto;scroll-snap-type:x mandatory;
+    overflow-x:auto;scroll-snap-type:x proximity;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
     gap:12px;
     margin:0 calc(var(--pad) * -1);
@@ -974,6 +980,8 @@ footer{
     scroll-padding-left:var(--pad);
     align-items:stretch;
     cursor:grab;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x pan-y;
   }
   .c01 .triptych::-webkit-scrollbar{display:none}
   .c01 .triptych .slot,
@@ -986,7 +994,7 @@ footer{
 
   /* c02 — EULER */
   .c02{grid-template-columns:1fr;gap:20px}
-  .c02 .lead{grid-column:1;grid-row:auto;height:62vh;max-height:480px}
+  .c02 .lead{grid-column:1;grid-row:auto;height:62vh;height:62svh;max-height:480px}
 
   /* c03 — ELDZHEY */
   .c03{grid-template-columns:1fr;gap:20px}
@@ -1013,13 +1021,17 @@ footer{
   /* strips → swipe carousels */
   .strip,.strip.landscape{
     display:flex;flex-direction:row;
-    overflow-x:auto;scroll-snap-type:x mandatory;
+    overflow-x:auto;scroll-snap-type:x proximity;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
     gap:12px;
     margin:0 calc(var(--pad) * -1);
     padding:0 var(--pad) 8px;
     scroll-padding-left:var(--pad);
     align-items:stretch;
+    /* keep horizontal swipes inside the strip (no browser back-gesture),
+       let vertical swipes scroll the page */
+    overscroll-behavior-x:contain;
+    touch-action:pan-x pan-y;
   }
   .strip::-webkit-scrollbar{display:none}
   .strip .slot{flex:0 0 73vw;aspect-ratio:3/4;scroll-snap-align:start}
@@ -2111,7 +2123,7 @@ footer{
     <div class="col-left" data-reveal>
       <span class="eyebrow" data-i18n="st-eyebrow">003 — Manifesto · what this is</span>
       <h2 data-i18n="st-h2">Directed for<br>the <em>podium</em>.<br>Engineered for<br>the <em>feed</em>.</h2>
-      <p data-i18n="st-p">I run a design team, not a solo desk. That changes what "creative direction" means here — it's not one idea I have, it's a pipeline I built so that a national uniform, a metaverse collection, and a mass-market drop can all move through the same system without any of them getting diluted. AI is the connective tissue — not a shortcut, but the reason a team this size can direct state-level precision, digital-native production, and commercial volume at the same time. Born in Moscow, April 2000. Inside LVMH certified, 2025.</p>
+      <p data-i18n="st-p">I lead a design team. Creative direction here is not a single idea — it is a built pipeline: a national uniform, a metaverse collection and a mass-market drop move through one system without dilution. AI is the connective tissue that lets a team of this size hold state-level precision, digital-native production and commercial volume at once. Born in Moscow, April 2000. Inside LVMH certified, 2025.</p>
     </div>
     <div class="col-right">
       <div class="cap" data-reveal data-delay="1">
@@ -2409,7 +2421,7 @@ footer{
     '#c12 .body dl':'<dt>роль</dt><dd>арт-дирекшн · стайлинг</dd><dt>тема</dt><dd>кыргызский миф × домашнее насилие</dd><dt>медиум</dt><dd>фотосерия · костюм</dd><dt>ссылка</dt><dd><a href="https://www.instagram.com/qoorchaq/" target="_blank" rel="noopener" data-hover>@qoorchaq ↗</a></dd>',
     '[data-i18n="st-eyebrow"]':'003 — Манифест · что это',
     '[data-i18n="st-h2"]':'Срежиссировано<br>для <em>подиума</em>.<br>Собрано<br>для <em>ленты</em>.',
-    '[data-i18n="st-p"]':'Я веду дизайн-команду, а не сольный стол. Это меняет смысл «креативного дирекшна»: это не одна моя идея, а пайплайн, который я построил, чтобы национальная форма, коллекция для метавселенной и масс-маркет дроп шли через одну систему, не разбавляя друг друга. AI — соединительная ткань: не короткий путь, а причина, по которой команда такого размера ведёт гос-точность, цифровое производство и коммерческий тираж одновременно. Родился в Москве, апрель 2000. Сертификат Inside LVMH, 2025.',
+    '[data-i18n="st-p"]':'Я руковожу дизайн-командой. Креативный дирекшн здесь — не одна идея, а выстроенный пайплайн: национальная форма, коллекция для метавселенной и масс-маркет дроп проходят через одну систему без потери точности. AI — соединительная ткань, которая позволяет команде такого размера одновременно держать государственный уровень, цифровое производство и коммерческий тираж. Родился в Москве, апрель 2000. Сертификат Inside LVMH, 2025.',
     '[data-i18n="st-c1h"]':'Гос-уровень <em>работы</em>',
     '[data-i18n="st-c1p"]':'У формы для Олимпиады или Игр кочевников один дубль: стадион, эфир и техническая комиссия, которая проверяет каждый шов раньше, чем историю.',
     '[data-i18n="st-c2h"]':'Метавселенная <em>/ digital</em>',
