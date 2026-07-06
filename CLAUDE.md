@@ -8,7 +8,14 @@ Live at **https://portfoliovisualkan.alan-babayarov.workers.dev** — the `portf
 
 ## Running the Site
 
-No build system. Open `Portfolio v6.html` directly in a browser, or use the `portfolio-v6` server from `.claude/launch.json`. Google Fonts load from CDN; everything else is local.
+No build system. Open `Portfolio v6.html` directly in a browser, or use the `portfolio-v6` server from `.claude/launch.json`. JetBrains Mono loads from Google Fonts CDN; the display font is local (see Typography); everything else is local.
+
+## Typography — exactly two faces
+
+- **`--display`** = `UnZialish` (local `assets/fonts/UnZialish.ttf`, `@font-face`, preloaded) — the name, every heading (`h2`/`h3`/`.cap h4`), nav brand, marquee, giant case numbers. It's a **Latin-only uncial** — Cyrillic (RU headings) has no glyphs, so the stack falls back to `Georgia` (a serif that *does* have Cyrillic). Keep letter-spacing ≥ 0 on display text; uncial glyphs overlap when tracked negative. Headings use `font-style:normal` (the face has no italic — don't set italic or the browser synthesizes an ugly slant).
+- **`--text`** = `JetBrains Mono` — body copy, all technical labels, meta, chips, email, overlays.
+- Legacy aliases `--serif`/`--stencil`/`--slab` → `--display`; `--type`/`--mono` → `--text`. Don't reintroduce Cormorant/Bebas/Special Elite/Bowlby.
+- The hero name lives in the narrow 5fr column — size it so `Babayarov` (widest word) fits on one line in the uncial face (`.alan`/`.baba` are `white-space:nowrap`).
 
 ## Architecture
 
@@ -59,6 +66,8 @@ Each case has `.chips` marking medium: plain chips = craft/3D, `.chip.ai` = AI-i
 - Every content `<img>` wider than 760px carries `srcset` with a 720px `*-sm.jpg` sibling (`sizes="(max-width:880px) 92vw, 46vw"`). When adding an image, generate the `-sm` variant too.
 - `.case` uses `contain:layout paint` (scopes reflow/repaint per case). Do **not** switch this to `content-visibility:auto` — case heights vary 1000–3000px on mobile, and a flat `contain-intrinsic-size` guess makes off-screen cases snap to true height on reveal, which reads as "photos expanding" and janks scroll (tried and reverted). The mobile media block disables orb/grain animation, per-image filters and per-slot blend overlays — don't re-enable them under 880px.
 - Horizontal swipe carousels (`.strip`, `.c01 .triptych`) need both `overscroll-behavior-x:contain` and `touch-action:pan-x pan-y` on mobile, or a fast horizontal swipe can trigger the browser's back/forward gesture or vertical rubber-banding instead of scrolling the carousel.
+- **No `position:fixed` layer may carry `filter`, `mix-blend-mode`, or a running animation on mobile.** The atmosphere overlays (`.fx-orbs/.fx-grain/.fx-scan/.fx-vig`) are full-viewport and fixed; a filter/blend on them forces the compositor to re-render the whole viewport every touch-scroll frame — that was the "photos vibrating / scroll shudders from Toolor down" bug. Mobile block strips blur off `.fx-orbs` (its radial gradients are already soft) and kills all blend/animation on the fixed layers. Verify with the fixed-costly audit: no fixed element should report a non-`none` filter/blend on mobile.
+- Any `vh`-based height on a full-height block needs an `svh` companion right after it (`height:80vh;height:80svh`) — plain `vh` resizes when the mobile URL bar collapses mid-scroll, jerking the layout.
 
 ## CSS Custom Properties
 
